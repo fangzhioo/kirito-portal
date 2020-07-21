@@ -3,8 +3,9 @@ FROM node:11.13.0-alpine
 RUN mkdir -p /app 
 WORKDIR /app 
 
+RUN sed -i "s/dl-cdn.alpinelinux.org/${ALPINE_REPOSITORIES}/g" /etc/apk/repositories
 RUN apk update && apk upgrade
-RUN apk add git
+RUN apk add --no-cache make gcc g++ python
 
 COPY . /app 
 
@@ -13,6 +14,8 @@ COPY . /app
 RUN npm config set registry https://registry.npm.taobao.org 
 RUN npm install 
 RUN npm run build 
+RUN npm cache clean --force
+RUN apk del make gcc g++ python
 
 ENV NODE_ENV=production 
 ENV HOST 0.0.0.0 
