@@ -3,7 +3,7 @@ FROM node:11.13.0-alpine
 RUN mkdir -p /app 
 WORKDIR /app 
 
-RUN sed -i "s/dl-cdn.alpinelinux.org/${ALPINE_REPOSITORIES}/g" /etc/apk/repositories
+# RUN sed -i "s/dl-cdn.alpinelinux.org/${ALPINE_REPOSITORIES}/g" /etc/apk/repositories
 RUN apk update && apk upgrade
 RUN apk add --no-cache make gcc g++ python
 
