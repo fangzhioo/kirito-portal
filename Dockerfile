@@ -1,5 +1,5 @@
 #基于镜像node，版本自己查看上面的链接
-FROM node:latest
+FROM node:10.22.0
 #参数，node的环境为生产环境
 ENV NODE_ENV=production
 #任意ip
