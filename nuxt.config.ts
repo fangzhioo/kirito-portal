@@ -1,4 +1,4 @@
-import colors from 'vuetify/es5/util/colors'
+import { Configuration } from '@nuxt/types/config'
 
 export default {
   /*
@@ -34,7 +34,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['~/assets/css/common.scss'],
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
@@ -52,7 +52,7 @@ export default {
     '@nuxt/typescript-build',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
-    '@nuxtjs/vuetify',
+    ['@nuxtjs/vuetify', {}],
   ],
   /*
    ** Nuxt.js modules
@@ -79,25 +79,22 @@ export default {
    ** https://github.com/nuxt-community/vuetify-module
    */
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
-    theme: {
-      dark: false,
-      themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3,
-        },
-      },
-    },
+    customVariables: ['~/assets/css/variables.scss'],
+    customProperties: true,
   },
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {},
-}
+  /** typescript config for nuxt */
+  typescript: {
+    // typeCheck: false,
+    typeCheck: {
+      eslint: {
+        files: './src/**/*.{ts,js,vue}',
+      },
+    },
+    ignoreNotFoundWarnings: true,
+  },
+} as Configuration

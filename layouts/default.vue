@@ -82,6 +82,16 @@ export default {
           title: 'Inspire',
           to: '/inspire',
         },
+        {
+          icon: 'mdi-chart-bubble',
+          title: '定制',
+          to: '/custom',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: '样式与动画',
+          to: '/style',
+        },
       ],
       miniVariant: false,
       right: true,
