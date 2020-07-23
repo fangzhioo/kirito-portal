@@ -89,12 +89,12 @@ export default {
   build: {},
   /** typescript config for nuxt */
   typescript: {
-    // typeCheck: false,
-    typeCheck: {
-      eslint: {
-        files: './src/**/*.{ts,js,vue}',
-      },
-    },
+    typeCheck: false,
+    // typeCheck: {
+    //   eslint: {
+    //     files: './src/**/*.{ts,js,vue}',
+    //   },
+    // },
     ignoreNotFoundWarnings: true,
   },
 } as Configuration
