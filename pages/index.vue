@@ -82,19 +82,27 @@
   </v-layout>
 </template>
 
-<script>
-import Logo from '~/components/Logo.vue'
+<script lang="ts">
+import Vue from 'vue'
+// @ts-ignore
+import Logo from '@/components/Logo.vue'
+// @ts-ignore
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
-
-export default {
+export default Vue.extend({
   components: {
     Logo,
     VuetifyLogo,
+  },
+  mounted() {
+    // @ts-ignore
+    this.$API.blog.blogArticle.listArticleByQuery.request({}).then((res) => {
+      console.log('blog-list', res)
+    })
   },
   head() {
     return {
       title: 'kirito - 首页',
     }
   },
-}
+})
 </script>

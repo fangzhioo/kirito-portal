@@ -1,4 +1,5 @@
 import { Configuration } from '@nuxt/types/config'
+import proxy from './config/proxy.config'
 
 export default {
   /*
@@ -39,7 +40,7 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [],
+  plugins: ['~/plugins/apiInject'],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -60,6 +61,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt/content
     '@nuxt/content',
@@ -69,6 +71,8 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {},
+  // 代理配置  详见config/nuxt.proxy.js
+  proxy,
   /*
    ** Content module configuration
    ** See https://content.nuxtjs.org/configuration
