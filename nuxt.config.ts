@@ -1,5 +1,5 @@
-import { Configuration } from '@nuxt/types/config'
-import proxy from './config/proxy.config'
+import { Configuration } from '@nuxt/types/config';
+import proxy from './config/proxy.config';
 
 export default {
   /*
@@ -101,4 +101,4 @@ export default {
     // },
     ignoreNotFoundWarnings: true,
   },
-} as Configuration
+} as Configuration;

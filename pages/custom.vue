@@ -18,12 +18,7 @@
         {{ `noDataText: ` }}
       </p>
       <v-radio-group :value="$vuetify.lang.current" @change="handLangChange">
-        <v-radio
-          v-for="n in langs"
-          :key="n"
-          :label="`Lang - ${n}`"
-          :value="n"
-        ></v-radio>
+        <v-radio v-for="n in langs" :key="n" :label="`Lang - ${n}`" :value="n"></v-radio>
       </v-radio-group>
     </div>
     <v-divider></v-divider>
@@ -31,34 +26,29 @@
     <v-switch v-model="$vuetify.rtl"></v-switch>
     <v-divider></v-divider>
     <p>切换主题</p>
-    <v-switch
-      v-model="$vuetify.theme.dark"
-      hide-details
-      inset
-      label="Theme Dark"
-    ></v-switch>
+    <v-switch v-model="$vuetify.theme.dark" hide-details inset label="Theme Dark"></v-switch>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 export default Vue.extend({
   data: () => ({
     langs: ['en', 'ja', 'zhHans'],
   }),
   mounted() {
-    this.getVuetify()
+    this.getVuetify();
   },
   methods: {
     handLangChange(val: any) {
-      this.$vuetify.lang.current = val
-      this.getVuetify()
+      this.$vuetify.lang.current = val;
+      this.getVuetify();
     },
     getVuetify() {
-      console.log(this.$vuetify)
+      console.log(this.$vuetify);
     },
   },
-})
+});
 </script>
 
 <style>

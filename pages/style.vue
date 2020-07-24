@@ -3,10 +3,8 @@
     <div>引用块</div>
     <template>
       <blockquote class="blockquote">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum maiores
-        modi quidem veniam, expedita quis laboriosam, ullam facere adipisci,
-        iusto, voluptate sapiente corrupti asperiores rem nemo numquam fuga ab
-        at.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum maiores modi quidem veniam, expedita quis
+        laboriosam, ullam facere adipisci, iusto, voluptate sapiente corrupti asperiores rem nemo numquam fuga ab at.
       </blockquote>
     </template>
     <v-divider />
@@ -14,16 +12,12 @@
     <template>
       <div>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum
-          maiores modi quidem veniam, expedita quis laboriosam, ullam facere
-          adipisci, iusto, voluptate sapiente corrupti asperiores rem nemo
-          numquam fuga ab at.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum maiores modi quidem veniam, expedita quis
+          laboriosam, ullam facere adipisci, iusto, voluptate sapiente corrupti asperiores rem nemo numquam fuga ab at.
         </p>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum
-          maiores modi quidem veniam, expedita quis laboriosam, ullam facere
-          adipisci, iusto, voluptate sapiente corrupti asperiores rem nemo
-          numquam fuga ab at.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum maiores modi quidem veniam, expedita quis
+          laboriosam, ullam facere adipisci, iusto, voluptate sapiente corrupti asperiores rem nemo numquam fuga ab at.
         </p>
       </div>
     </template>
@@ -41,8 +35,7 @@
     <div>用户输入</div>
     <template>
       <div>
-        To install Vuetify, type <kbd>npm install vuetify</kbd> into your
-        console. Once complete, type
+        To install Vuetify, type <kbd>npm install vuetify</kbd> into your console. Once complete, type
         <kbd>cd <code>&lt;project name&gt;</code></kbd> and run
         <kbd>npm install</kbd>
       </div>
@@ -52,17 +45,8 @@
     <template>
       <v-container>
         <v-row justify="center">
-          <v-col
-            v-for="value in ['-sm', '', '-lg', '-xl']"
-            :key="value"
-            cols="12"
-            md="2"
-          >
-            <div
-              :class="`rounded${value}`"
-              class="pa-6 text-center grey lighten-2"
-              v-text="`.rounded${value}`"
-            ></div>
+          <v-col v-for="value in ['-sm', '', '-lg', '-xl']" :key="value" cols="12" md="2">
+            <div :class="`rounded${value}`" class="pa-6 text-center grey lighten-2" v-text="`.rounded${value}`"></div>
           </v-col>
         </v-row>
       </v-container>
@@ -74,11 +58,8 @@
         Lorem ipsum dolor sit amet,
         <strong class="red--text text--lighten-1">inciderint</strong>
         definitionem est ea, explicari
-        <span class="cyan--text text--darken-1">prodesset eam id</span>. Mazim
-        doctus vix an.
-        <span class="indigo--text text--darken-2"
-          >Amet causae probatus nec ex</span
-        >.
+        <span class="cyan--text text--darken-1">prodesset eam id</span>. Mazim doctus vix an.
+        <span class="indigo--text text--darken-2">Amet causae probatus nec ex</span>.
       </div>
     </template>
     <v-divider />
@@ -105,12 +86,7 @@
         <v-row justify="center">
           <v-col v-for="n in 25" :key="n" cols="auto">
             <v-card :elevation="n - 1" height="100" width="100">
-              <v-row
-                class="fill-height"
-                align="center"
-                justify="center"
-                v-text="n - 1"
-              ></v-row>
+              <v-row class="fill-height" align="center" justify="center" v-text="n - 1"></v-row>
             </v-card>
           </v-col>
         </v-row>
@@ -121,13 +97,7 @@
     <template>
       <div>
         <v-card
-          v-for="j in [
-            'start',
-            'end',
-            'center',
-            'space-between',
-            'space-around',
-          ]"
+          v-for="j in ['start', 'end', 'center', 'space-between', 'space-around']"
           :key="j"
           :class="`d-flex justify-${j} mb-6`"
           color="grey lighten-2"
@@ -157,12 +127,7 @@
       <v-container class="spacing-playground pa-6" fluid>
         <v-row>
           <v-col class="d-flex align-center" cols="12" sm="6">
-            <v-select
-              v-model="paddingDirection"
-              :items="directions"
-              class="pr-2"
-              label="Padding"
-            >
+            <v-select v-model="paddingDirection" :items="directions" class="pr-2" label="Padding">
               <template v-slot:prepend>
                 <strong class="primary--text py-1">p</strong>
               </template>
@@ -172,20 +137,11 @@
               </template>
             </v-select>
 
-            <v-select
-              v-model="paddingSize"
-              :items="paddingSizes.slice(1)"
-              label="Size"
-            ></v-select>
+            <v-select v-model="paddingSize" :items="paddingSizes.slice(1)" label="Size"></v-select>
           </v-col>
 
           <v-col class="d-flex" cols="12" sm="6">
-            <v-select
-              v-model="marginDirection"
-              :items="directions"
-              class="pr-2"
-              label="Margin"
-            >
+            <v-select v-model="marginDirection" :items="directions" class="pr-2" label="Margin">
               <template v-slot:prepend>
                 <strong class="primary--text py-1">m</strong>
               </template>
@@ -195,20 +151,13 @@
               </template>
             </v-select>
 
-            <v-select
-              v-model="marginSize"
-              :items="marginSizes"
-              label="Size"
-            ></v-select>
+            <v-select v-model="marginSize" :items="marginSizes" label="Size"></v-select>
           </v-col>
 
           <v-col class="orange lighten-3 pa-0" cols="12">
             <v-sheet :class="[computedMargin]" elevation="4" rounded>
               <div :class="[computedPadding]" class="light-green lighten-3">
-                <div
-                  class="white text-center py-6"
-                  v-text="playgroundText"
-                ></div>
+                <div class="white text-center py-6" v-text="playgroundText"></div>
               </div>
             </v-sheet>
           </v-col>
@@ -220,10 +169,7 @@
     <template>
       <v-item-group mandatory>
         <v-sheet class="overflow-y-auto" max-height="600" tile>
-          <v-item
-            v-for="[c, text, size, weight, spacing, margin] in classes"
-            :key="c"
-          >
+          <v-item v-for="[c, text, size, weight, spacing, margin] in classes" :key="c">
             <template v-slot="{ active, toggle }">
               <v-sheet
                 :color="active ? 'grey lighten-4' : undefined"
@@ -232,11 +178,7 @@
                 style="cursor: pointer;"
                 @click="toggle"
               >
-                <div
-                  :class="[`text-${c}`, active && `mb-${margin}`]"
-                  class="transition-swing"
-                  v-text="text"
-                ></div>
+                <div :class="[`text-${c}`, active && `mb-${margin}`]" class="transition-swing" v-text="text"></div>
 
                 <v-expand-transition>
                   <v-responsive v-if="active" max-width="350">
@@ -304,20 +246,16 @@
         <p class="subtitle-2 text-center">Agnostic RTL Alignment</p>
 
         <p class="text-sm-left">
-          Left aligned text on viewports sized SM (small) or wider for rtl or
-          ltr.
+          Left aligned text on viewports sized SM (small) or wider for rtl or ltr.
         </p>
         <p class="text-md-left">
-          Left aligned text on viewports sized MD (medium) or wider for rtl or
-          ltr.
+          Left aligned text on viewports sized MD (medium) or wider for rtl or ltr.
         </p>
         <p class="text-lg-right">
-          Right aligned text on viewports sized LG (large) or wider for rtl or
-          ltr.
+          Right aligned text on viewports sized LG (large) or wider for rtl or ltr.
         </p>
         <p class="text-xl-left">
-          Left aligned text on viewports sized XL (extra-large) or wider for rtl
-          or ltr.
+          Left aligned text on viewports sized XL (extra-large) or wider for rtl or ltr.
         </p>
 
         <p class="subtitle-2 text-center">Responsive RTL Alignment</p>
@@ -336,12 +274,12 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import Vue from 'vue';
 export default Vue.extend({
   data() {
-    const spacers = Array.from({ length: 17 }, (_val, i) => `${i}`)
-    const nspacers = Array.from({ length: 16 }, (_val, i) => `n${i + 1}`)
-    const defaults = ['auto', ...spacers]
+    const spacers = Array.from({ length: 17 }, (_val, i) => `${i}`);
+    const nspacers = Array.from({ length: 16 }, (_val, i) => `n${i + 1}`);
+    const defaults = ['auto', ...spacers];
 
     return {
       directions: ['t', 'b', 'l', 'r', 's', 'e', 'x', 'y', 'a'],
@@ -351,8 +289,7 @@ export default Vue.extend({
       paddingDirection: 'a',
       paddingSize: '6',
       paddingSizes: defaults,
-      playgroundText:
-        'Use the controls above to try out the different spacing helpers.',
+      playgroundText: 'Use the controls above to try out the different spacing helpers.',
       model: null,
       classes: [
         ['h1', 'Heading 1', '6rem', '300', '-0.09375rem', -1],
@@ -369,16 +306,16 @@ export default Vue.extend({
         ['caption', 'Caption', '0.75rem', '400', '0.025rem', 4],
         ['overline', 'Overline', '0.75rem', '500', '0.1666666667em', 4],
       ],
-    }
+    };
   },
 
   computed: {
     computedPadding() {
-      return `p${this.paddingDirection}-${this.paddingSize}`
+      return `p${this.paddingDirection}-${this.paddingSize}`;
     },
     computedMargin() {
-      return `m${this.marginDirection}-${this.marginSize}`
+      return `m${this.marginDirection}-${this.marginSize}`;
     },
   },
-})
+});
 </script>

@@ -1266,6 +1266,7 @@
     "mods": [
       {
         "description": "Aliyun Oss Controller",
+        "name": "aliyunOss",
         "interfaces": [
           {
             "description": "antdPolicy",
@@ -1293,11 +1294,11 @@
             },
             "parameters": []
           }
-        ],
-        "name": "aliyunOss"
+        ]
       },
       {
         "description": "Blog Article Controller",
+        "name": "blogArticle",
         "interfaces": [
           {
             "description": "countArticleByQuery",
@@ -1562,11 +1563,11 @@
               }
             ]
           }
-        ],
-        "name": "blogArticle"
+        ]
       },
       {
         "description": "User Controller",
+        "name": "user",
         "interfaces": [
           {
             "description": "currentUser",
@@ -1632,14 +1633,14 @@
             },
             "parameters": []
           }
-        ],
-        "name": "user"
+        ]
       }
     ],
     "name": "blog",
     "baseClasses": [
       {
         "name": "AliyunOssAntdPolicyBo",
+        "templateArgs": [],
         "properties": [
           {
             "dataType": {
@@ -1719,11 +1720,11 @@
             "name": "signature",
             "required": false
           }
-        ],
-        "templateArgs": []
+        ]
       },
       {
         "name": "BlogArticleDTO",
+        "templateArgs": [],
         "properties": [
           {
             "dataType": {
@@ -1842,11 +1843,11 @@
             "name": "title",
             "required": false
           }
-        ],
-        "templateArgs": []
+        ]
       },
       {
         "name": "BlogArticleVO",
+        "templateArgs": [],
         "properties": [
           {
             "dataType": {
@@ -2043,11 +2044,21 @@
             "name": "userLike",
             "required": false
           }
-        ],
-        "templateArgs": []
+        ]
       },
       {
         "name": "CommonResult",
+        "templateArgs": [
+          {
+            "typeArgs": [],
+            "typeName": "AliyunOssAntdPolicyBo",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          }
+        ],
         "properties": [
           {
             "dataType": {
@@ -2087,17 +2098,6 @@
             },
             "name": "msg",
             "required": false
-          }
-        ],
-        "templateArgs": [
-          {
-            "typeArgs": [],
-            "typeName": "AliyunOssAntdPolicyBo",
-            "isDefsType": true,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
           }
         ]
       }

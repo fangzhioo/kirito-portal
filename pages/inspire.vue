@@ -4,10 +4,7 @@
       <!--  -->
       <Calendars />
       <v-divider></v-divider>
-      <v-parallax
-        dark
-        src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
-      >
+      <v-parallax dark src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
         <v-row align="center" justify="center">
           <v-col class="text-center" cols="12">
             <h1 class="display-1 font-weight-thin mb-4">Vuetify.js</h1>
@@ -46,7 +43,7 @@
 </template>
 
 <script>
-import Calendars from '~/components/Calendars.vue'
+import Calendars from '~/components/Calendars.vue';
 const gradients = [
   ['#222'],
   ['#42b3f4'],
@@ -54,7 +51,7 @@ const gradients = [
   ['purple', 'violet'],
   ['#00c6ff', '#F0F', '#FF0'],
   ['#f72047', '#ffd200', '#1feaea'],
-]
+];
 
 export default {
   components: { Calendars },
@@ -79,9 +76,9 @@ export default {
         { name: 'keywords', content: 'kirito,我是关键字' },
         { name: 'description', content: '我是描述！' },
       ],
-    }
+    };
   },
-}
+};
 </script>
 <style lang="scss" scoped>
 .wrapper {
