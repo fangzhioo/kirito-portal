@@ -94,18 +94,20 @@
             <!-- </v-card> -->
           </v-col>
           <v-col order-sm="1" cols="12" sm="12" md="4" lg="4" class="text-center">
-            <v-btn text @click="toggleShow">Upload Avatar</v-btn>
-            <my-upload
-              v-model="show"
-              field="img"
-              :width="200"
-              :height="200"
-              :params="params"
-              :headers="headers"
-              img-format="jpg"
-              lang-type="en"
-              @crop-success="cropSuccess"
-            ></my-upload>
+            <client-only>
+              <v-btn text @click="toggleShow">Upload Avatar</v-btn>
+              <my-upload
+                v-model="show"
+                field="img"
+                :width="200"
+                :height="200"
+                :params="params"
+                :headers="headers"
+                img-format="jpg"
+                lang-type="en"
+                @crop-success="cropSuccess"
+              />
+            </client-only>
             <v-responsive width="230" class="mx-auto" style="border-radius: 50%;">
               <div v-if="!imgDataUrl" id="settings-image-placeholder" class="px-12">
                 <v-icon>mdi-image-plus</v-icon>
@@ -127,12 +129,8 @@
 </template>
 
 <script>
-import myUpload from 'vue-image-crop-upload';
 export default {
   name: 'SettingsModal',
-  components: {
-    myUpload,
-  },
   props: {
     openDialog: {
       type: Boolean,

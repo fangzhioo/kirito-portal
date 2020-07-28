@@ -3,7 +3,7 @@
     <v-app-bar class="white" app clipped-left>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="font-weight-bold"
-        ><router-link to="/studio" class="black--text" style="text-decoration: none;"
+        ><router-link to="/studio/dashboard" class="black--text" style="text-decoration: none;"
           >Studio</router-link
         ></v-toolbar-title
       >
@@ -92,7 +92,7 @@
     </v-app-bar>
 
     <v-navigation-drawer id="nav" v-model="drawer" clipped app>
-      <div tag="div" class="v-navigation-drawer__content">
+      <div v-bar tag="div" class="v-navigation-drawer__content">
         <v-list tile class="py-0">
           <v-list-item
             v-for="item in items[0].pages"
@@ -169,19 +169,19 @@
         </div>
       </template>
     </v-navigation-drawer>
-    <!-- <upload-video-modal :open-dialog="dialog" @closeDialog="dialog = false" /> -->
-    <!-- <settings-modal :open-dialog="settingsDialog" @closeDialog="settingsDialog = false" /> -->
+    <upload-video-modal :open-dialog="dialog" @closeDialog="dialog = false" />
+    <settings-modal :open-dialog="settingsDialog" @closeDialog="settingsDialog = false" />
   </nav>
 </template>
 
 <script>
-// import UploadVideoModal from '@/components/UploadVideoModal';
-// import SettingsModal from '@/components/SettingsModal';
+import UploadVideoModal from '@/components/UploadVideoModal';
+import SettingsModal from '@/components/SettingsModal';
 export default {
   name: 'StudioNavBar',
   components: {
-    // UploadVideoModal,
-    // SettingsModal,
+    UploadVideoModal,
+    SettingsModal,
   },
   data: () => ({
     drawer: false,
@@ -189,7 +189,7 @@ export default {
       {
         header: 'scroll',
         pages: [
-          { title: 'Dashboard', link: '/studio', icon: 'mdi-view-dashboard' },
+          { title: 'Dashboard', link: '/studio/dashboard', icon: 'mdi-view-dashboard' },
           {
             title: 'Videos',
             link: '/studio/videos',

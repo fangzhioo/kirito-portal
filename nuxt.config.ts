@@ -42,7 +42,9 @@ export default {
    */
   plugins: [
     { src: '~/plugins/apiInject', mode: 'client' },
-    { src: '~/plugins/vue-plugins', mode: 'server' },
+    { src: '~/plugins/vee-validate', mode: 'client' },
+    { src: '~/plugins/vue-bar', mode: 'client' },
+    { src: '~/plugins/vue-image-crop-upload', mode: 'client' },
   ],
   /*
    ** Auto import components
@@ -94,6 +96,7 @@ export default {
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {
+    transpile: ['vue-image-crop-upload'],
     babel: {
       presets({ isServer }: any) {
         return [

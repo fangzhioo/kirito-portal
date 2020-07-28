@@ -28,7 +28,7 @@
           </v-tooltip>
         </template>
         <v-list>
-          <v-list-item router to="/studio">
+          <v-list-item router to="/studio/dashboard">
             <v-list-item-icon class="mr-3"><v-icon>mdi-play-box-outline</v-icon></v-list-item-icon>
             <v-list-item-title>Upload video</v-list-item-title>
           </v-list-item>
@@ -82,7 +82,7 @@
               </v-list-item-icon>
               <v-list-item-title>Your channel</v-list-item-title>
             </v-list-item>
-            <v-list-item router to="/studio">
+            <v-list-item router to="/studio/dashboard">
               <v-list-item-icon>
                 <v-icon>mdi-youtube-studio</v-icon>
               </v-list-item-icon>
@@ -106,7 +106,7 @@
       :clipped="$route.name !== 'Watch'"
       :temporary="$route.name === 'Watch'"
     >
-      <div tag="div" class="v-navigation-drawer__content">
+      <div v-bar tag="div" class="v-navigation-drawer__content">
         <v-list dense nav class="py-0" tag="div">
           <v-list-item
             :class="{

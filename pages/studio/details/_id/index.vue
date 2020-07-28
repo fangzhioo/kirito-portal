@@ -61,17 +61,20 @@
         </v-col>
         <v-col cols="4" class="text-center">
           <v-btn text @click="toggleShow">Upload Thumbnails</v-btn>
-          <my-upload
-            v-model="show"
-            field="img"
-            :width="400"
-            :height="400"
-            :params="params"
-            :headers="headers"
-            img-format="jpg"
-            lang-type="en"
-            @crop-success="cropSuccess"
-          ></my-upload>
+          <client-only>
+            <my-upload
+              v-model="show"
+              field="img"
+              :width="400"
+              :height="400"
+              :params="params"
+              :headers="headers"
+              img-format="jpg"
+              lang-type="en"
+              @crop-success="cropSuccess"
+            />
+          </client-only>
+
           <v-responsive style="max-width: 100%;">
             <div v-if="!imgDataUrl" id="image-placeholder" class="px-12">
               <v-icon>mdi-image-plus</v-icon>
@@ -85,12 +88,8 @@
 </template>
 
 <script>
-import myUpload from 'vue-image-crop-upload';
 export default {
   name: 'Details',
-  components: {
-    myUpload,
-  },
   data() {
     return {
       // dialog: this.openDialog ? this.openDialog : false,
