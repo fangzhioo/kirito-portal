@@ -107,6 +107,7 @@
 
 <script>
 export default {
+  layout: 'studioLayout',
   data: () => ({
     loading: true,
     dialogDelete: false,

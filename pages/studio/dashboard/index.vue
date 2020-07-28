@@ -140,6 +140,7 @@
 import UploadVideoModal from '@/components/UploadVideoModal';
 import SubscribersModal from '@/components/SubscribersModal';
 export default {
+  layout: 'studioLayout',
   components: {
     UploadVideoModal,
     SubscribersModal,

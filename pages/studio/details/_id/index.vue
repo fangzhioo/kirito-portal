@@ -89,6 +89,7 @@
 
 <script>
 export default {
+  layout: 'studioLayout',
   name: 'Details',
   data() {
     return {
