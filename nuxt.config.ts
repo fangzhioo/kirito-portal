@@ -40,7 +40,10 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: ['~/plugins/apiInject'],
+  plugins: [
+    { src: '~/plugins/apiInject', mode: 'client' },
+    { src: '~/plugins/vue-plugins', mode: 'server' },
+  ],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -90,7 +93,22 @@ export default {
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
-  build: {},
+  build: {
+    babel: {
+      presets({ isServer }: any) {
+        return [
+          [
+            require.resolve('@nuxt/babel-preset-app'),
+            // require.resolve('@nuxt/babel-preset-app-edge'), // For nuxt-edge users
+            {
+              buildTarget: isServer ? 'server' : 'client',
+              corejs: { version: 3 },
+            },
+          ],
+        ];
+      },
+    },
+  },
   /** typescript config for nuxt */
   typescript: {
     typeCheck: false,

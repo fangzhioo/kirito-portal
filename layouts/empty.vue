@@ -1,6 +1,5 @@
 <template>
-  <v-app>
-    <nav-bar />
+  <v-app dark>
     <v-main>
       <v-container>
         <nuxt />
@@ -10,9 +9,5 @@
 </template>
 
 <script>
-import NavBar from '@/components/NavBar';
-
-export default {
-  components: { NavBar },
-};
+export default {};
 </script>
