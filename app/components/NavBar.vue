@@ -123,7 +123,7 @@
               parentItem.header
             }}</v-subheader>
             <v-list-item
-              v-for="(item, i) in parentItem.pages"
+              v-for="item in parentItem.pages"
               :key="item.title"
               link
               class="mb-0"
@@ -132,12 +132,9 @@
               exact
               active-class="active-item"
             >
-              <v-list-item-icon v-if="parentItem.header !== 'Subscriptions'">
+              <v-list-item-icon>
                 <v-icon>{{ item.icon }}</v-icon>
               </v-list-item-icon>
-              <v-list-item-avatar v-else class="mr-5">
-                <img :src="`https://randomuser.me/api/portraits/men/${i}.jpg`" />
-              </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title class="font-weight-medium subtitle-2">{{ item.title }}</v-list-item-title>
               </v-list-item-content>
@@ -168,7 +165,7 @@ export default {
           { title: 'Trending', link: '/trending', icon: 'mdi-fire' },
           {
             title: 'Subscriptions',
-            link: '#s',
+            link: '/subscriptions',
             icon: 'mdi-youtube-subscription',
           },
         ],
@@ -209,24 +206,24 @@ export default {
         header: 'Subscriptions',
         pages: [
           {
-            title: 'Traversy Media',
+            title: '音乐',
             link: '#tm',
-            icon: 'mdi-badge-account',
+            icon: 'mdi-music-box',
           },
           {
-            title: 'The New Boston',
+            title: '游戏',
             link: '#tn',
-            icon: 'mdi-badge-account',
+            icon: 'mdi-gamepad-variant',
           },
           {
-            title: 'Net Ninija',
+            title: '体育',
             link: '#nn',
-            icon: 'mdi-badge-account',
+            icon: 'mdi-football',
           },
           {
-            title: 'Chris Hawks',
+            title: '电影',
             link: '#ch',
-            icon: 'mdi-badge-account',
+            icon: 'mdi-movie',
           },
         ],
       },
