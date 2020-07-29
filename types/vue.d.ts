@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import { Store } from 'vuex';
-import { apitype } from '~/api';
+import { apitype } from '../app/api';
 
 declare module 'vue/types/vue' {
   interface Vue {

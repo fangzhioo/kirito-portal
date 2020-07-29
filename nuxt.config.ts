@@ -1,7 +1,10 @@
 import { Configuration } from '@nuxt/types/config';
-import proxy from './config/proxy.config';
+import proxy from './app/config/proxy.config';
 
 export default {
+  server: {
+    port: 2333, // default: 3000
+  },
   /*
    ** Nuxt rendering mode
    ** See https://nuxtjs.org/api/configuration-mode
@@ -12,10 +15,14 @@ export default {
    ** See https://nuxtjs.org/api/configuration-target
    */
   target: 'server',
+  // 页面切换动画
+  transition: 'slide-left',
   /*
    ** Headers of the page
    ** See https://nuxtjs.org/api/configuration-head
    */
+  // 指定nuxt应用的源码目录 如需更改目录，同时需修改 tsconfig.json 中的 'path'
+  srcDir: 'app/',
   head: {
     titleTemplate: '%s - ' + process.env.npm_package_name,
     title: process.env.npm_package_name || '',
@@ -31,6 +38,12 @@ export default {
       { name: 'description', content: 'kirito,我是描述！' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+  },
+  /*
+   ** 进度条配置
+   */
+  loading: {
+    color: '#00bcd4',
   },
   /*
    ** Global CSS
@@ -70,6 +83,7 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt/content
     '@nuxt/content',
+    'cookie-universal-nuxt',
   ],
   /*
    ** Axios module configuration

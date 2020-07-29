@@ -1,6 +1,6 @@
 import { AxiosRequestConfig, AxiosInstance as IAxiosInstance } from 'axios';
 import { Context } from '@nuxt/types';
-import { apitype } from '~/api';
+import { apitype } from '../app/api';
 
 /** nuxt axios module */
 export interface AxiosInstance extends IAxiosInstance {

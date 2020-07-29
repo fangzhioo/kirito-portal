@@ -7,6 +7,7 @@
       >
       <v-spacer></v-spacer>
       <v-text-field
+        v-model="searchKeyword"
         flat
         hide-details
         append-icon="mdi-magnify"
@@ -158,6 +159,7 @@
 export default {
   data: () => ({
     drawer: false,
+    searchKeyword: '',
     items: [
       {
         header: null,
@@ -293,8 +295,8 @@ export default {
     this.drawer = this.$route.name === 'Watch' ? false : this.drawer;
   },
   methods: {
-    search(value) {
-      console.log('hello', value);
+    search() {
+      console.log('search', this.searchKeyword);
     },
   },
 };

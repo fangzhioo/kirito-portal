@@ -10,12 +10,13 @@
     "strict": true,
     "noEmit": true,
     "experimentalDecorators": true,
+    "importHelpers": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./*"],
-      "@/*": ["./*"]
+      "~/*": ["app/*"],
+      "@/*": ["app/*"]
     },
     "types": ["@types/node", "@nuxt/types", "@nuxtjs/vuetify"]
   },
-  "exclude": ["node_modules", ".nuxt", "dist", "config", "api"]
+  "exclude": ["node_modules", ".nuxt", "dist", "app/config", "api"]
 }

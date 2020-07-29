@@ -3,7 +3,6 @@
     "mods": [
       {
         "description": "Everything about your Pets",
-        "name": "pet",
         "interfaces": [
           {
             "consumes": [
@@ -389,11 +388,11 @@
               }
             ]
           }
-        ]
+        ],
+        "name": "pet"
       },
       {
         "description": "Access to Petstore orders",
-        "name": "store",
         "interfaces": [
           {
             "description": "Returns pet inventories by status\nReturns a map of status codes to quantities",
@@ -529,11 +528,11 @@
               }
             ]
           }
-        ]
+        ],
+        "name": "store"
       },
       {
         "description": "Operations about user",
-        "name": "user",
         "interfaces": [
           {
             "consumes": [
@@ -837,14 +836,14 @@
               }
             ]
           }
-        ]
+        ],
+        "name": "user"
       }
     ],
     "name": "petstore",
     "baseClasses": [
       {
         "name": "ApiResponse",
-        "templateArgs": [],
         "properties": [
           {
             "dataType": {
@@ -885,11 +884,11 @@
             "name": "type",
             "required": false
           }
-        ]
+        ],
+        "templateArgs": []
       },
       {
         "name": "Category",
-        "templateArgs": [],
         "properties": [
           {
             "dataType": {
@@ -917,11 +916,11 @@
             "name": "name",
             "required": false
           }
-        ]
+        ],
+        "templateArgs": []
       },
       {
         "name": "Order",
-        "templateArgs": [],
         "properties": [
           {
             "dataType": {
@@ -1006,11 +1005,11 @@
             "description": "Order Status",
             "required": false
           }
-        ]
+        ],
+        "templateArgs": []
       },
       {
         "name": "Pet",
-        "templateArgs": [],
         "properties": [
           {
             "dataType": {
@@ -1115,11 +1114,11 @@
             "name": "tags",
             "required": false
           }
-        ]
+        ],
+        "templateArgs": []
       },
       {
         "name": "Tag",
-        "templateArgs": [],
         "properties": [
           {
             "dataType": {
@@ -1147,11 +1146,11 @@
             "name": "name",
             "required": false
           }
-        ]
+        ],
+        "templateArgs": []
       },
       {
         "name": "User",
-        "templateArgs": [],
         "properties": [
           {
             "dataType": {
@@ -1258,7 +1257,8 @@
             "name": "username",
             "required": false
           }
-        ]
+        ],
+        "templateArgs": []
       }
     ]
   },
@@ -1266,7 +1266,6 @@
     "mods": [
       {
         "description": "Aliyun Oss Controller",
-        "name": "aliyunOss",
         "interfaces": [
           {
             "description": "antdPolicy",
@@ -1294,11 +1293,11 @@
             },
             "parameters": []
           }
-        ]
+        ],
+        "name": "aliyunOss"
       },
       {
         "description": "Blog Article Controller",
-        "name": "blogArticle",
         "interfaces": [
           {
             "description": "countArticleByQuery",
@@ -1563,11 +1562,11 @@
               }
             ]
           }
-        ]
+        ],
+        "name": "blogArticle"
       },
       {
         "description": "User Controller",
-        "name": "user",
         "interfaces": [
           {
             "description": "currentUser",
@@ -1633,14 +1632,14 @@
             },
             "parameters": []
           }
-        ]
+        ],
+        "name": "user"
       }
     ],
     "name": "blog",
     "baseClasses": [
       {
         "name": "AliyunOssAntdPolicyBo",
-        "templateArgs": [],
         "properties": [
           {
             "dataType": {
@@ -1720,11 +1719,11 @@
             "name": "signature",
             "required": false
           }
-        ]
+        ],
+        "templateArgs": []
       },
       {
         "name": "BlogArticleDTO",
-        "templateArgs": [],
         "properties": [
           {
             "dataType": {
@@ -1843,11 +1842,11 @@
             "name": "title",
             "required": false
           }
-        ]
+        ],
+        "templateArgs": []
       },
       {
         "name": "BlogArticleVO",
-        "templateArgs": [],
         "properties": [
           {
             "dataType": {
@@ -2044,21 +2043,11 @@
             "name": "userLike",
             "required": false
           }
-        ]
+        ],
+        "templateArgs": []
       },
       {
         "name": "CommonResult",
-        "templateArgs": [
-          {
-            "typeArgs": [],
-            "typeName": "AliyunOssAntdPolicyBo",
-            "isDefsType": true,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          }
-        ],
         "properties": [
           {
             "dataType": {
@@ -2098,6 +2087,17 @@
             },
             "name": "msg",
             "required": false
+          }
+        ],
+        "templateArgs": [
+          {
+            "typeArgs": [],
+            "typeName": "AliyunOssAntdPolicyBo",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
           }
         ]
       }

@@ -2,8 +2,15 @@
   <div id="trending" class="pt-7 px-sm-10">
     <v-container fluid>
       <v-row>
-        <v-col v-for="i in 10" :key="i" cols="8" sm="7" md="10" lg="10" class="mx-lg-0 mx-md-0 mx-sm-auto mx-auto">
-          <!-- <v-container> -->
+        <v-col
+          v-for="item in 10"
+          :key="item"
+          cols="8"
+          sm="7"
+          md="10"
+          lg="10"
+          class="mx-lg-0 mx-md-0 mx-sm-auto mx-auto"
+        >
           <v-skeleton-loader class="mx-auto" type="list-item-avatar-three-line" :loading="loading" tile large>
             <v-card class="card" tile flat router to="/watch/dd">
               <v-row no-gutters>
@@ -16,6 +23,7 @@
                   <div class="ml-4">
                     <v-card-title class="pl-2 pt-0 subtitle-1 font-weight-bold">
                       Top western road trips
+                      {{ item.title }}
                     </v-card-title>
 
                     <v-card-subtitle class="pl-2 pb-0">
@@ -32,7 +40,6 @@
               </v-row>
             </v-card>
           </v-skeleton-loader>
-          <!-- </v-container> -->
         </v-col>
       </v-row>
     </v-container>
@@ -41,11 +48,19 @@
 
 <script>
 export default {
-  name: 'Home',
+  name: 'Trending',
   data: () => ({
     loading: true,
   }),
   mounted() {
+    // this.$store
+    //   .dispatch({
+    //     type: 'trending/fetchTrendingList',
+    //     payload: {},
+    //   })
+    //   .finally(() => {
+    //     this.loading = false;
+    //   });
     setTimeout(() => {
       this.loading = false;
     }, 3000);

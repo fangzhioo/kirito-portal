@@ -8,12 +8,10 @@ export default class MyGenerator extends CodeGenerator {
       ${base.properties
         .map((prop) => {
           // 替换 defs. 不使用 defs 命名空间
-          // @ts-ignore
           let propertyCode = prop.toPropertyCode(true).replace(/defs\./g, '');
 
           // 如果属性是范型参考，则属性为必选
           // 例如 data?: T0 , creditCustomerConsumptionDailyVo?: CreditManagerV2.AggregateAllTransactionDetailsWithinDimensions[]
-          // @ts-ignore
           if (prop.dataType.reference) {
             propertyCode = propertyCode.replace(/\?/, '');
           }
@@ -51,8 +49,11 @@ export default class MyGenerator extends CodeGenerator {
 
     const requestArgs = [];
 
+    //@ts-ignore
     !isEmptyParams && requestArgs.push('params: Params');
+    //@ts-ignore
     bodyParams && requestArgs.push(`bodyParams: ${bodyParams}`);
+    //@ts-ignore
     requestArgs.push(`options?: RequestConfig`);
     const requestParams = requestArgs.join(', ');
 
@@ -174,24 +175,24 @@ export default class MyGenerator extends CodeGenerator {
 }
 
 export class FileStructures extends pont.FileStructures {
-  getModsDeclaration(originCode: string) {
+  getModsDeclaration(originCode: string, usingMultipleOrigins: boolean) {
     return `
       export ${originCode}
     `;
   }
 
-  getBaseClassesInDeclaration(originCode: string) {
+  getBaseClassesInDeclaration(originCode: string, usingMultipleOrigins: boolean) {
     return `
       export ${originCode}
     `;
   }
 
   getDataSourcesDeclarationTs() {
-    const dsNames = (this as any).generators.map((ge: any) => ge.dataSource.name);
+    const dsNames = (this as any).generators.map((ge) => ge.dataSource.name);
 
     return `
       ${dsNames
-        .map((name: string) => {
+        .map((name) => {
           return `export * from './${name}/api';`;
         })
         .join('\n')}
@@ -200,11 +201,11 @@ export class FileStructures extends pont.FileStructures {
   }
 
   getDataSourcesTs() {
-    const dsNames = (this as any).generators.map((ge: any) => ge.dataSource.name);
+    const dsNames = (this as any).generators.map((ge) => ge.dataSource.name);
 
     return `
       ${dsNames
-        .map((name: string) => {
+        .map((name) => {
           return `import { ${name} } from './${name}';`;
         })
         .join('\n')}
