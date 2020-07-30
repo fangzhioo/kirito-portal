@@ -8,12 +8,10 @@
             <v-col cols="12" sm="5" md="5" lg="5" offset-md="1">
               <v-card class="transparent" flat>
                 <v-list-item three-line>
-                  <v-list-item-avatar size="80"
-                    ><v-img src="https://randomuser.me/api/portraits/men/1.jpg"></v-img
-                  ></v-list-item-avatar>
+                  <v-list-item-avatar size="80"><v-img :src="avatar" :alt="nickName"></v-img></v-list-item-avatar>
                   <v-list-item-content class="align-self-auto">
-                    <v-list-item-title class="headline mb-1">Tech Reagan</v-list-item-title>
-                    <v-list-item-subtitle>1.06M subscribers </v-list-item-subtitle>
+                    <v-list-item-title class="headline mb-1">{{ nickName }}</v-list-item-title>
+                    <v-list-item-subtitle>{{ subscribers }} subscribers </v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
               </v-card>
@@ -92,6 +90,33 @@ export default {
       avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
     },
   }),
+  computed: {
+    subscribers: {
+      get() {
+        return this.$store.getters['global/subscribers'];
+      },
+    },
+    token: {
+      get() {
+        return this.$store.getters['global/token'];
+      },
+    },
+    avatar: {
+      get() {
+        return this.$store.getters['global/avatar'];
+      },
+    },
+    email: {
+      get() {
+        return this.$store.getters['global/email'];
+      },
+    },
+    nickName: {
+      get() {
+        return this.$store.getters['global/nickName'];
+      },
+    },
+  },
   mounted() {
     setTimeout(() => {
       this.loading = false;

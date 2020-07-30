@@ -46,30 +46,37 @@
         </template>
         <span>VueTube apps</span>
       </v-tooltip>
-      <v-tooltip bottom>
-        <template v-slot:activator="{ on }">
-          <v-btn icon class="mr-7" v-on="on"> <v-icon size="25">mdi-bell</v-icon></v-btn>
-        </template>
-        <span>Notifications</span>
-      </v-tooltip>
 
       <v-menu offset-y left>
+        <template v-slot:activator="{ on: menu }">
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on: tooltip }">
+              <v-btn icon class="mr-7" v-on="{ ...tooltip, ...menu }"> <v-icon size="25">mdi-bell</v-icon></v-btn>
+            </template>
+            <span>Notifications</span>
+          </v-tooltip>
+        </template>
+        <Notifications />
+      </v-menu>
+
+      <v-menu v-if="token" offset-y left>
         <template v-slot:activator="{ on }">
           <v-btn small color="red" depressed fab class="white--text" v-on="on">
-            T
+            <v-avatar>
+              <img :src="avatar" :alt="nickName" />
+            </v-avatar>
           </v-btn>
         </template>
-
         <v-card>
           <v-list>
             <v-list-item>
               <v-list-item-avatar>
-                <img :src="`https://randomuser.me/api/portraits/men/4.jpg`" />
+                <img :src="avatar" />
               </v-list-item-avatar>
 
               <v-list-item-content>
-                <v-list-item-title>Tech Reagan</v-list-item-title>
-                <v-list-item-subtitle>techreagan@gmail.com</v-list-item-subtitle>
+                <v-list-item-title>{{ nickName }}</v-list-item-title>
+                <v-list-item-subtitle>{{ email }}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
           </v-list>
@@ -98,6 +105,7 @@
           </v-list>
         </v-card>
       </v-menu>
+      <v-btn v-else tile outlined> <v-icon left>mdi-account-circle</v-icon> Login </v-btn>
     </v-app-bar>
 
     <v-navigation-drawer
@@ -119,9 +127,9 @@
           </v-list-item>
           <v-divider class="hidden-lg-and-up"></v-divider>
           <div v-for="parentItem in items" :key="parentItem.header">
-            <v-subheader v-if="parentItem.header" class="pl-3 py-4 subtitle-1 font-weight-bold text-uppercase">{{
-              parentItem.header
-            }}</v-subheader>
+            <v-subheader v-if="parentItem.header" class="pl-3 py-4 subtitle-1 font-weight-bold text-uppercase">
+              {{ parentItem.header }}
+            </v-subheader>
             <v-list-item
               v-for="item in parentItem.pages"
               :key="item.title"
@@ -153,140 +161,166 @@
 </template>
 
 <script>
+import Notifications from './Notifications';
 export default {
-  data: () => ({
-    drawer: false,
-    searchKeyword: '',
-    items: [
-      {
-        header: null,
-        pages: [
-          { title: 'Home', link: '/', icon: 'mdi-home' },
-          { title: 'Trending', link: '/trending', icon: 'mdi-fire' },
-          {
-            title: 'Subscriptions',
-            link: '/subscriptions',
-            icon: 'mdi-youtube-subscription',
-          },
-        ],
-      },
-      {
-        header: null,
-        pages: [
-          {
-            title: 'Library',
-            link: '#l',
-            icon: 'mdi-play-box-multiple',
-          },
-          {
-            title: 'History',
-            link: '/history',
-            icon: 'mdi-history',
-          },
-          {
-            title: 'Your videos',
-            link: '#yv',
-            icon: 'mdi-play-box-outline',
-          },
+  components: { Notifications },
+  data() {
+    return {
+      drawer: false,
+      searchKeyword: '',
+      items: [
+        {
+          header: null,
+          pages: [
+            { title: 'Home', link: '/', icon: 'mdi-home' },
+            { title: 'Trending', link: '/trending', icon: 'mdi-fire' },
+            {
+              title: 'Subscriptions',
+              link: '/subscriptions',
+              icon: 'mdi-youtube-subscription',
+            },
+          ],
+        },
+        {
+          header: null,
+          pages: [
+            {
+              title: 'Library',
+              link: '#l',
+              icon: 'mdi-play-box-multiple',
+            },
+            {
+              title: 'History',
+              link: '/history',
+              icon: 'mdi-history',
+            },
+            {
+              title: 'Your videos',
+              link: '#yv',
+              icon: 'mdi-play-box-outline',
+            },
 
-          {
-            title: 'Watch later',
-            link: '#wl',
-            icon: 'mdi-clock',
-          },
+            {
+              title: 'Watch later',
+              link: '#wl',
+              icon: 'mdi-clock',
+            },
 
-          {
-            title: 'Liked videos',
-            link: '#lw',
-            icon: 'mdi-thumb-up',
-          },
-        ],
+            {
+              title: 'Liked videos',
+              link: '#lw',
+              icon: 'mdi-thumb-up',
+            },
+          ],
+        },
+        {
+          header: 'Subscriptions',
+          pages: [
+            {
+              title: '音乐',
+              link: '#tm',
+              icon: 'mdi-music-box',
+            },
+            {
+              title: '游戏',
+              link: '#tn',
+              icon: 'mdi-gamepad-variant',
+            },
+            {
+              title: '体育',
+              link: '#nn',
+              icon: 'mdi-football',
+            },
+            {
+              title: '电影',
+              link: '#ch',
+              icon: 'mdi-movie',
+            },
+          ],
+        },
+        {
+          header: 'MORE FROM VUETUBE',
+          pages: [
+            {
+              title: 'VueTube Premium',
+              link: '#vp',
+              icon: 'mdi-youtube',
+            },
+            {
+              title: 'Gaming',
+              link: '#g',
+              icon: 'mdi-youtube-gaming',
+            },
+            {
+              title: 'Live',
+              link: '#li',
+              icon: 'mdi-access-point',
+            },
+          ],
+        },
+        {
+          header: null,
+          pages: [
+            {
+              title: 'Setting',
+              link: '#sg',
+              icon: 'mdi-cog',
+            },
+            {
+              title: 'Report history',
+              link: '#rh',
+              icon: 'mdi-flag',
+            },
+            {
+              title: 'Help',
+              link: '#hp',
+              icon: 'mdi-help-circle',
+            },
+            {
+              title: 'Send feedback',
+              link: '#f',
+              icon: 'mdi-message-alert',
+            },
+          ],
+        },
+      ],
+      links: [
+        { text: 'About', link: '#' },
+        { text: 'Press', link: '#' },
+        { text: 'Copyrignt', link: '#' },
+        { text: 'Contact us', link: '#' },
+        { text: 'Creators', link: '#' },
+        { text: 'Advertise', link: '#' },
+        { text: 'Developers', link: '#' },
+        { text: 'Terms', link: '#' },
+        { text: 'Privacy', link: '#' },
+        { text: 'Policy & Safety', link: '#' },
+        { text: 'Test new features', link: '#' },
+      ],
+    };
+  },
+  computed: {
+    token: {
+      get() {
+        return this.$store.getters['global/token'];
       },
-      {
-        header: 'Subscriptions',
-        pages: [
-          {
-            title: '音乐',
-            link: '#tm',
-            icon: 'mdi-music-box',
-          },
-          {
-            title: '游戏',
-            link: '#tn',
-            icon: 'mdi-gamepad-variant',
-          },
-          {
-            title: '体育',
-            link: '#nn',
-            icon: 'mdi-football',
-          },
-          {
-            title: '电影',
-            link: '#ch',
-            icon: 'mdi-movie',
-          },
-        ],
+    },
+    avatar: {
+      get() {
+        return this.$store.getters['global/avatar'];
       },
-      {
-        header: 'MORE FROM VUETUBE',
-        pages: [
-          {
-            title: 'VueTube Premium',
-            link: '#vp',
-            icon: 'mdi-youtube',
-          },
-          {
-            title: 'Gaming',
-            link: '#g',
-            icon: 'mdi-youtube-gaming',
-          },
-          {
-            title: 'Live',
-            link: '#li',
-            icon: 'mdi-access-point',
-          },
-        ],
+    },
+    email: {
+      get() {
+        return this.$store.getters['global/email'];
       },
-      {
-        header: null,
-        pages: [
-          {
-            title: 'Setting',
-            link: '#sg',
-            icon: 'mdi-cog',
-          },
-          {
-            title: 'Report history',
-            link: '#rh',
-            icon: 'mdi-flag',
-          },
-          {
-            title: 'Help',
-            link: '#hp',
-            icon: 'mdi-help-circle',
-          },
-          {
-            title: 'Send feedback',
-            link: '#f',
-            icon: 'mdi-message-alert',
-          },
-        ],
+    },
+    nickName: {
+      get() {
+        return this.$store.getters['global/nickName'];
       },
-    ],
-    links: [
-      { text: 'About', link: '#' },
-      { text: 'Press', link: '#' },
-      { text: 'Copyrignt', link: '#' },
-      { text: 'Contact us', link: '#' },
-      { text: 'Creators', link: '#' },
-      { text: 'Advertise', link: '#' },
-      { text: 'Developers', link: '#' },
-      { text: 'Terms', link: '#' },
-      { text: 'Privacy', link: '#' },
-      { text: 'Policy & Safety', link: '#' },
-      { text: 'Test new features', link: '#' },
-    ],
-  }),
+    },
+  },
   mounted() {
     this.drawer = !this.$vuetify.breakpoint.mdAndDown;
     this.drawer = this.$route.name === 'Watch' ? false : this.drawer;

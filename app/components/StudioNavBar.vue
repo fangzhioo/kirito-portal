@@ -18,7 +18,6 @@
         class="hidden-sm-and-down"
         @click:append="search"
       ></v-text-field>
-      <!-- <v-toolbar-title>Page title</v-toolbar-title> -->
 
       <v-spacer></v-spacer>
       <v-menu offset-y>
@@ -47,7 +46,9 @@
       <v-menu offset-y left>
         <template v-slot:activator="{ on }">
           <v-btn small color="red" depressed fab class="white--text" v-on="on">
-            T
+            <v-avatar>
+              <img :src="avatar" :alt="nickName" />
+            </v-avatar>
           </v-btn>
         </template>
 
@@ -55,12 +56,12 @@
           <v-list>
             <v-list-item>
               <v-list-item-avatar>
-                <img :src="`https://randomuser.me/api/portraits/men/4.jpg`" />
+                <img :src="avatar" :alt="nickName" />
               </v-list-item-avatar>
 
               <v-list-item-content>
-                <v-list-item-title>Tech Reagan</v-list-item-title>
-                <v-list-item-subtitle>techreagan@gmail.com</v-list-item-subtitle>
+                <v-list-item-title>{{ nickName }}</v-list-item-title>
+                <v-list-item-subtitle>{{ email }}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
           </v-list>
@@ -144,25 +145,17 @@
         <div class="pa-2 text-center">
           <v-list class="text-center">
             <v-list-item class="px-2">
-              <v-btn
-                height="95"
-                width="95"
-                href
-                x-large
-                color="red"
-                depressed
-                fab
-                to="/channels/222"
-                class="white--text mx-auto"
-              >
-                <h1 class="display-1">T</h1>
+              <v-btn height="95" width="95" href x-large depressed fab to="/channels/222" class="white--text mx-auto">
+                <v-avatar :size="90">
+                  <img :src="avatar" :alt="nickName" />
+                </v-avatar>
               </v-btn>
             </v-list-item>
 
             <v-list-item link to="/channels/222">
               <v-list-item-content>
-                <v-list-item-title class="title">Tech Reagan</v-list-item-title>
-                <v-list-item-subtitle>techreagan1@gmail.com</v-list-item-subtitle>
+                <v-list-item-title class="title">{{ nickName }}</v-list-item-title>
+                <v-list-item-subtitle>{{ email }}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
           </v-list>
@@ -183,6 +176,7 @@ export default {
     UploadVideoModal,
     SettingsModal,
   },
+
   data: () => ({
     drawer: false,
     items: [
@@ -194,6 +188,11 @@ export default {
             title: 'Videos',
             link: '/studio/videos',
             icon: 'mdi-play-box-multiple',
+          },
+          {
+            title: 'Articles',
+            link: '/studio/articles',
+            icon: 'mdi-puzzle',
           },
           {
             title: 'Playlists',
@@ -252,6 +251,28 @@ export default {
     dialog: false,
     settingsDialog: false,
   }),
+  computed: {
+    token: {
+      get() {
+        return this.$store.getters['global/token'];
+      },
+    },
+    avatar: {
+      get() {
+        return this.$store.getters['global/avatar'];
+      },
+    },
+    email: {
+      get() {
+        return this.$store.getters['global/email'];
+      },
+    },
+    nickName: {
+      get() {
+        return this.$store.getters['global/nickName'];
+      },
+    },
+  },
   mounted() {
     this.drawer = !this.$vuetify.breakpoint.mdAndDown;
   },
