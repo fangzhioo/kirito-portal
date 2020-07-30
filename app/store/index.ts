@@ -15,4 +15,12 @@ export const actions = {
       // });
     } catch (err) {}
   },
+  async nuxtClientInit({ commit, dispatch }, { req }) {
+    try {
+      commit('global/initToken');
+      await dispatch({
+        type: 'global/currentUser',
+      });
+    } catch (error) {}
+  },
 };

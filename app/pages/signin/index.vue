@@ -9,6 +9,9 @@
             <ValidationObserver ref="form" v-slot="{ handleSubmit, reset }">
               <form @submit.prevent="handleSubmit(signin)" @reset.prevent="reset">
                 <ValidationProvider v-slot="{ errors }" name="Email" rules="required|email">
+                  <p class="ma-0 text-right">
+                    <v-btn text small class="pl-0 text-capitalize" color="primary" to="signup">Create account</v-btn>
+                  </p>
                   <v-text-field v-model="email" :error-messages="errors" label="Email" outlined></v-text-field>
                 </ValidationProvider>
                 <ValidationProvider v-slot="{ errors }" name="Password" rules="required">
@@ -24,9 +27,7 @@
                   ></v-text-field>
                 </ValidationProvider>
                 <div class="mt-6 d-flex justify-space-between">
-                  <v-btn text small class="pl-0 text-capitalize" color="primary" router to="signup"
-                    >Create account</v-btn
-                  >
+                  <v-checkbox v-model="remember" color="primary" label="Remember Me"></v-checkbox>
                   <v-btn type="submit" class="primary" depressed>Sign in</v-btn>
                 </div>
               </form>
@@ -35,6 +36,15 @@
         </v-card>
       </v-col>
     </v-row>
+
+    <v-snackbar v-model="alertShow" :timeout="3000">
+      {{ alertMsg }}
+      <template v-slot:action="{ attrs }">
+        <v-btn color="blue" text v-bind="attrs" @click="alertShow = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -43,12 +53,30 @@ export default {
   layout: 'empty',
   name: 'SignIn',
   data: () => ({
-    email: '',
-    password: '',
+    email: 'kirito@gmail.com',
+    password: '123456',
+    remember: true,
+    alertMsg: '',
+    alertShow: false,
   }),
   methods: {
     signin() {
-      console.log('hello');
+      this.$store.dispatch({
+        type: 'global/signIn',
+        payload: {
+          username: this.email,
+          password: this.password,
+          remember: this.remember,
+        },
+        callback: (res) => {
+          if (res && res.code === 200) {
+            this.$router.push('/');
+          } else {
+            this.alertMsg = res.msg;
+            this.alertShow = true;
+          }
+        },
+      });
     },
   },
 };

@@ -1,6 +1,5 @@
-import { petstore } from './petstore';
-import { blog } from './blog';
+import { portal } from './portal';
 import defs from './api';
 
 export type apitype = typeof defs;
-export const api = { petstore, blog } as apitype;
+export const api = { portal } as apitype;

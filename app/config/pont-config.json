@@ -3,12 +3,8 @@
   "usingMultipleOrigins": true,
   "origins": [
     {
-      "originUrl": "https://petstore.swagger.io/v2/swagger.json",
-      "name": "petstore"
-    },
-    {
-      "originUrl": "http://blog.fangzhi.ml/v2/api-docs",
-      "name": "blog"
+      "originUrl": "http://localhost:7001/v2/api-docs",
+      "name": "portal"
     }
   ],
   "templatePath": "./pont-template-nuxt"

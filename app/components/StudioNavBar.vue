@@ -43,7 +43,7 @@
         </v-list>
       </v-menu>
 
-      <v-menu offset-y left>
+      <v-menu v-if="isLogin" offset-y left>
         <template v-slot:activator="{ on }">
           <v-btn small color="red" depressed fab class="white--text" v-on="on">
             <v-avatar>
@@ -90,6 +90,7 @@
           </v-list>
         </v-card>
       </v-menu>
+      <v-btn v-else tile outlined> <v-icon left>mdi-account-circle</v-icon> Login </v-btn>
     </v-app-bar>
 
     <v-navigation-drawer id="nav" v-model="drawer" clipped app>
@@ -168,6 +169,7 @@
 </template>
 
 <script>
+import { isEmpty } from 'lodash';
 import UploadVideoModal from '@/components/UploadVideoModal';
 import SettingsModal from '@/components/SettingsModal';
 export default {
@@ -252,9 +254,9 @@ export default {
     settingsDialog: false,
   }),
   computed: {
-    token: {
+    isLogin: {
       get() {
-        return this.$store.getters['global/token'];
+        return !isEmpty(this.$store.getters['global/token']);
       },
     },
     avatar: {

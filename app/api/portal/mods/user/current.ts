@@ -1,18 +1,16 @@
 import { fetch } from '~/utils/fetch';
 
 /**
- * @desc Add a new pet to the store
+ * @desc current
  */
-export function request(bodyParams, options) {
+export function request(options) {
   const fetchOption = Object.assign(
     {
-      url: '/petstore/pet',
-      method: 'post',
+      url: '/portal/auth/current',
+      method: 'get',
       headers: {
         'Content-Type': 'application/json',
       },
-
-      data: bodyParams,
     },
     options,
   );

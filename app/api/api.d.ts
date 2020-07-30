@@ -1,3 +1,2 @@
-export * from './petstore/api';
-export * from './blog/api';
+export * from './portal/api';
 export as namespace defs;

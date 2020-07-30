@@ -54,7 +54,9 @@ export default {
    ** https://nuxtjs.org/guide/plugins
    */
   plugins: [
+    { src: '~/plugins/axiosExtend', mode: 'client' },
     { src: '~/plugins/apiInject', mode: 'client' },
+    { src: '~/plugins/nuxt-client-init', mode: 'client' },
     { src: '~/plugins/vee-validate', mode: 'client' },
     { src: '~/plugins/vue-bar', mode: 'client' },
     { src: '~/plugins/vue-image-crop-upload', mode: 'client' },
@@ -83,7 +85,7 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt/content
     '@nuxt/content',
-    'cookie-universal-nuxt',
+    ['cookie-universal-nuxt'],
   ],
   /*
    ** Axios module configuration

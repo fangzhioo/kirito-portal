@@ -1,12 +1,12 @@
 import { fetch } from '~/utils/fetch';
 
 /**
- * @desc Creates list of users with given input array
+ * @desc signIn
  */
 export function request(bodyParams, options) {
   const fetchOption = Object.assign(
     {
-      url: '/petstore/user/createWithList',
+      url: '/portal/auth/signIn',
       method: 'post',
       headers: {
         'Content-Type': 'application/json',

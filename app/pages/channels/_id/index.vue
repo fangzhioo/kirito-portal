@@ -69,6 +69,7 @@
 </template>
 
 <script>
+import { isEmpty } from 'lodash';
 import VideoCard from '@/components/VideoCard';
 export default {
   components: {
@@ -96,9 +97,9 @@ export default {
         return this.$store.getters['global/subscribers'];
       },
     },
-    token: {
+    isLogin: {
       get() {
-        return this.$store.getters['global/token'];
+        return !isEmpty(this.$store.getters['global/token']);
       },
     },
     avatar: {

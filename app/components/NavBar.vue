@@ -59,7 +59,7 @@
         <Notifications />
       </v-menu>
 
-      <v-menu v-if="token" offset-y left>
+      <v-menu v-if="isLogin" offset-y left>
         <template v-slot:activator="{ on }">
           <v-btn small color="red" depressed fab class="white--text" v-on="on">
             <v-avatar>
@@ -73,7 +73,6 @@
               <v-list-item-avatar>
                 <img :src="avatar" />
               </v-list-item-avatar>
-
               <v-list-item-content>
                 <v-list-item-title>{{ nickName }}</v-list-item-title>
                 <v-list-item-subtitle>{{ email }}</v-list-item-subtitle>
@@ -105,7 +104,7 @@
           </v-list>
         </v-card>
       </v-menu>
-      <v-btn v-else tile outlined> <v-icon left>mdi-account-circle</v-icon> Login </v-btn>
+      <v-btn v-else tile outlined to="/signin"> <v-icon left>mdi-account-circle</v-icon> Login </v-btn>
     </v-app-bar>
 
     <v-navigation-drawer
@@ -161,6 +160,7 @@
 </template>
 
 <script>
+import { isEmpty } from 'lodash';
 import Notifications from './Notifications';
 export default {
   components: { Notifications },
@@ -300,9 +300,9 @@ export default {
     };
   },
   computed: {
-    token: {
+    isLogin: {
       get() {
-        return this.$store.getters['global/token'];
+        return !isEmpty(this.$store.getters['global/token']);
       },
     },
     avatar: {

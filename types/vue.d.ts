@@ -1,12 +1,14 @@
 import Vue from 'vue';
 import { Store } from 'vuex';
 import { apitype } from '../app/api';
+import { NuxtCookies } from 'cookie-universal-nuxt';
 
 declare module 'vue/types/vue' {
   interface Vue {
     $axios: Nuxt.AxiosInstance;
     $API: apitype;
     $store: Store<any>;
+    $cookies: NuxtCookies;
   }
 }
 
