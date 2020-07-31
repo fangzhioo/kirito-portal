@@ -90,7 +90,7 @@
           </v-list>
         </v-card>
       </v-menu>
-      <v-btn v-else tile outlined> <v-icon left>mdi-account-circle</v-icon> Login </v-btn>
+      <v-btn v-else tile outlined to="/signin"> <v-icon left>mdi-account-circle</v-icon> Login </v-btn>
     </v-app-bar>
 
     <v-navigation-drawer id="nav" v-model="drawer" clipped app>
@@ -152,7 +152,6 @@
                 </v-avatar>
               </v-btn>
             </v-list-item>
-
             <v-list-item link to="/channels/222">
               <v-list-item-content>
                 <v-list-item-title class="title">{{ nickName }}</v-list-item-title>
@@ -169,7 +168,6 @@
 </template>
 
 <script>
-import { isEmpty } from 'lodash';
 import UploadVideoModal from '@/components/UploadVideoModal';
 import SettingsModal from '@/components/SettingsModal';
 export default {
@@ -256,22 +254,22 @@ export default {
   computed: {
     isLogin: {
       get() {
-        return !isEmpty(this.$store.getters['global/token']);
+        return this.$store.getters['user/isLogin'];
       },
     },
     avatar: {
       get() {
-        return this.$store.getters['global/avatar'];
+        return this.$store.getters['user/avatar'];
       },
     },
     email: {
       get() {
-        return this.$store.getters['global/email'];
+        return this.$store.getters['user/email'];
       },
     },
     nickName: {
       get() {
-        return this.$store.getters['global/nickName'];
+        return this.$store.getters['user/nickName'];
       },
     },
   },

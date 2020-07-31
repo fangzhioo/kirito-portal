@@ -160,7 +160,6 @@
 </template>
 
 <script>
-import { isEmpty } from 'lodash';
 import Notifications from './Notifications';
 export default {
   components: { Notifications },
@@ -302,22 +301,22 @@ export default {
   computed: {
     isLogin: {
       get() {
-        return !isEmpty(this.$store.getters['global/token']);
+        return this.$store.getters['user/isLogin'];
       },
     },
     avatar: {
       get() {
-        return this.$store.getters['global/avatar'];
+        return this.$store.getters['user/avatar'];
       },
     },
     email: {
       get() {
-        return this.$store.getters['global/email'];
+        return this.$store.getters['user/email'];
       },
     },
     nickName: {
       get() {
-        return this.$store.getters['global/nickName'];
+        return this.$store.getters['user/nickName'];
       },
     },
   },

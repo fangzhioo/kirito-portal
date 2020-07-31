@@ -7,63 +7,65 @@
             <v-col cols="6">
               <v-card-title class="text-center">VueTube</v-card-title>
               <v-card-subtitle class="mb-5">Create your VueTube account</v-card-subtitle>
-              <v-card-text>
-                <ValidationObserver ref="form" v-slot="{ handleSubmit, reset }">
-                  <form @submit.prevent="handleSubmit(signin)" @reset.prevent="reset">
-                    <ValidationProvider v-slot="{ errors }" name="Email" rules="required|email">
-                      <v-text-field
-                        v-model="email"
-                        :error-messages="errors"
-                        label="Email"
-                        class="mb-3"
-                        outlined
-                        dense
-                      ></v-text-field>
-                    </ValidationProvider>
-                    <ValidationProvider v-slot="{ errors }" name="Channel Name" rules="required|max:3">
-                      <v-text-field
-                        v-model="channelName"
-                        :error-messages="errors"
-                        label="Channel Name"
-                        outlined
-                        dense
-                      ></v-text-field>
-                    </ValidationProvider>
-                    <v-row>
-                      <v-col cols="6">
-                        <ValidationProvider v-slot="{ errors }" name="Password" rules="required|password:@confirm">
-                          <v-text-field
-                            v-model="password"
-                            type="password"
-                            :error-messages="errors"
-                            label="Password"
-                            outlined
-                            dense
-                          ></v-text-field>
-                        </ValidationProvider>
-                      </v-col>
-                      <v-col cols="6">
-                        <ValidationProvider v-slot="{ errors }" name="confirm" rules="required">
-                          <v-text-field
-                            v-model="confirmPassword"
-                            type="password"
-                            :error-messages="errors"
-                            label="Confirm"
-                            outlined
-                            dense
-                          ></v-text-field>
-                        </ValidationProvider>
-                      </v-col>
-                    </v-row>
-                    <div class="mt-6 d-flex justify-space-between">
-                      <v-btn text small class="pl-0 text-capitalize" color="primary" router to="signin"
-                        >Sign in instead</v-btn
-                      >
-                      <v-btn type="submit" class="primary" depressed>Sign up</v-btn>
-                    </div>
-                  </form>
-                </ValidationObserver>
-              </v-card-text>
+              <client-only>
+                <v-card-text>
+                  <ValidationObserver ref="form" v-slot="{ handleSubmit, reset }">
+                    <form @submit.prevent="handleSubmit(signUp)" @reset.prevent="reset">
+                      <ValidationProvider v-slot="{ errors }" name="Email" rules="required|email">
+                        <v-text-field
+                          v-model="email"
+                          :error-messages="errors"
+                          label="Email"
+                          class="mb-3"
+                          outlined
+                          dense
+                        ></v-text-field>
+                      </ValidationProvider>
+                      <ValidationProvider v-slot="{ errors }" name="NickName" rules="required|min:3">
+                        <v-text-field
+                          v-model="nickName"
+                          :error-messages="errors"
+                          label="NickName"
+                          outlined
+                          dense
+                        ></v-text-field>
+                      </ValidationProvider>
+                      <v-row>
+                        <v-col cols="6">
+                          <ValidationProvider v-slot="{ errors }" name="Password" rules="required|password:@confirm">
+                            <v-text-field
+                              v-model="password"
+                              type="password"
+                              :error-messages="errors"
+                              label="Password"
+                              outlined
+                              dense
+                            ></v-text-field>
+                          </ValidationProvider>
+                        </v-col>
+                        <v-col cols="6">
+                          <ValidationProvider v-slot="{ errors }" name="confirm" rules="required">
+                            <v-text-field
+                              v-model="confirmPassword"
+                              type="password"
+                              :error-messages="errors"
+                              label="Confirm"
+                              outlined
+                              dense
+                            ></v-text-field>
+                          </ValidationProvider>
+                        </v-col>
+                      </v-row>
+                      <div class="mt-6 d-flex justify-space-between">
+                        <v-btn text small class="pl-0 text-capitalize" color="primary" router to="signin"
+                          >Sign in instead</v-btn
+                        >
+                        <v-btn type="submit" class="primary" depressed>Sign up</v-btn>
+                      </div>
+                    </form>
+                  </ValidationObserver>
+                </v-card-text>
+              </client-only>
             </v-col>
             <v-col cols="5" class="align-self-center">
               <v-responsive>
@@ -153,23 +155,49 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-snackbar v-model="alertShow" :timeout="3000">
+      {{ alertMsg }}
+      <template v-slot:action="{ attrs }">
+        <v-btn color="blue" text v-bind="attrs" @click="alertShow = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-container>
 </template>
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator';
 
-<script>
-export default {
-  layout: 'empty',
+@Component({
   name: 'SignUp',
-  data: () => ({
-    email: '',
-    channelName: '',
-    password: '',
-    confirmPassword: '',
-  }),
-  methods: {
-    signin() {
-      console.log('hello');
-    },
-  },
-};
+  layout: 'empty',
+})
+export default class extends Vue {
+  email: string = '';
+  password: string = '';
+  confirmPassword: string = '';
+  nickName: string = '';
+  alertMsg: string = '';
+  alertShow: boolean = false;
+
+  signUp() {
+    this.$store.dispatch({
+      type: 'user/signUp',
+      payload: {
+        email: this.email,
+        password: this.password,
+        confirmPassword: this.confirmPassword,
+        nickName: this.nickName,
+      },
+      callback: (res: any) => {
+        if (res && res.code === 200) {
+          this.$router.push('/signin');
+        } else {
+          this.alertMsg = res.msg;
+          this.alertShow = true;
+        }
+      },
+    });
+  }
+}
 </script>

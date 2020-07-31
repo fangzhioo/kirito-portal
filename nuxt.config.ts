@@ -43,7 +43,7 @@ export default {
    ** 进度条配置
    */
   loading: {
-    color: '#00bcd4',
+    color: '#3B8070',
   },
   /*
    ** Global CSS
@@ -54,11 +54,11 @@ export default {
    ** https://nuxtjs.org/guide/plugins
    */
   plugins: [
-    { src: '~/plugins/axiosExtend', mode: 'client' },
-    { src: '~/plugins/apiInject', mode: 'client' },
-    { src: '~/plugins/nuxt-client-init', mode: 'client' },
+    '~/plugins/apiInject',
     { src: '~/plugins/vee-validate', mode: 'client' },
     { src: '~/plugins/vue-bar', mode: 'client' },
+    { src: '~/plugins/axiosExtend', mode: 'client' },
+    { src: '~/plugins/nuxt-client-init', mode: 'client' },
     { src: '~/plugins/vue-image-crop-upload', mode: 'client' },
   ],
   /*
@@ -138,4 +138,6 @@ export default {
     // },
     ignoreNotFoundWarnings: true,
   },
+  // 显示构建分析
+  analyze: process.env.NODE_ENV === 'production',
 } as Configuration;

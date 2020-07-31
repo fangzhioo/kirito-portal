@@ -10,10 +10,10 @@ export namespace portal {
     token: string;
 
     /** user */
-    user: portal.CommonUser;
+    user: portal.SsoUserBO;
   }
 
-  export class CommonResult<T0> {
+  export class CommonResult {
     /** code */
     code: number;
 
@@ -24,7 +24,32 @@ export namespace portal {
     msg: string;
   }
 
-  export class CommonUser {
+  export class LoginUser {
+    /** email */
+    email: string;
+
+    /** password */
+    password: string;
+
+    /** remember */
+    remember: boolean;
+  }
+
+  export class RegisterUser {
+    /** confirmPassword */
+    confirmPassword: string;
+
+    /** email */
+    email: string;
+
+    /** nickName */
+    nickName: string;
+
+    /** password */
+    password: string;
+  }
+
+  export class SsoUserBO {
     /** avatar */
     avatar: string;
 
@@ -46,25 +71,11 @@ export namespace portal {
     /** signature */
     signature: string;
 
-    /** token */
-    token: string;
-
     /** userId */
     userId: number;
 
     /** userName */
     userName: string;
-  }
-
-  export class LoginUser {
-    /** password */
-    password: string;
-
-    /** remember */
-    remember: boolean;
-
-    /** username */
-    username: string;
   }
 }
 
@@ -78,7 +89,7 @@ export namespace portal {
      * /auth/current
      */
     export namespace current {
-      export type ResponseType = Promise<portal.CommonResult<portal.CommonUser>>;
+      export type ResponseType = Promise<portal.CommonResult<portal.SsoUserBO>>;
       export function request(options?: RequestConfig): ResponseType;
     }
 
@@ -88,7 +99,22 @@ export namespace portal {
      */
     export namespace signIn {
       export type ResponseType = Promise<portal.CommonResult<portal.AuthBO>>;
-      export function request(bodyParams: portal.LoginUser, options?: RequestConfig): ResponseType;
+      export function request(
+        bodyParams: portal.LoginUser,
+        options?: RequestConfig,
+      ): ResponseType;
+    }
+
+    /**
+     * signUp
+     * /auth/signUp
+     */
+    export namespace signUp {
+      export type ResponseType = Promise<portal.CommonResult<number>>;
+      export function request(
+        bodyParams: portal.RegisterUser,
+        options?: RequestConfig,
+      ): ResponseType;
     }
   }
 }

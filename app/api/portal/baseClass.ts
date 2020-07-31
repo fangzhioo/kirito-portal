@@ -3,7 +3,7 @@ class AuthBO {
   token = '';
 
   /** user */
-  user = new CommonUser();
+  user = new SsoUserBO();
 }
 
 class CommonResult {
@@ -17,7 +17,32 @@ class CommonResult {
   msg = '';
 }
 
-class CommonUser {
+class LoginUser {
+  /** email */
+  email = '';
+
+  /** password */
+  password = '';
+
+  /** remember */
+  remember = false;
+}
+
+class RegisterUser {
+  /** confirmPassword */
+  confirmPassword = '';
+
+  /** email */
+  email = '';
+
+  /** nickName */
+  nickName = '';
+
+  /** password */
+  password = '';
+}
+
+class SsoUserBO {
   /** avatar */
   avatar = '';
 
@@ -39,9 +64,6 @@ class CommonUser {
   /** signature */
   signature = '';
 
-  /** token */
-  token = '';
-
   /** userId */
   userId = undefined;
 
@@ -49,20 +71,10 @@ class CommonUser {
   userName = '';
 }
 
-class LoginUser {
-  /** password */
-  password = '';
-
-  /** remember */
-  remember = false;
-
-  /** username */
-  username = '';
-}
-
 export const portal = {
   AuthBO,
   CommonResult,
-  CommonUser,
   LoginUser,
+  RegisterUser,
+  SsoUserBO,
 };

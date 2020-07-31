@@ -3,6 +3,7 @@ import {VuexModule} from 'vuex-module-decorators';
 import Global from '~/store/global'
 import Home from '~/store/home'
 import Trending from '~/store/trending'
+import User from '~/store/user'
 
 interface StoreHelper {
   
@@ -27,6 +28,14 @@ interface StoreHelper {
       action: AsyncFunctionProperties<Trending>;
       getter: Pick<Trending, ReadonlyKeys<Trending>>;
       state: Omit<Trending, (keyof VuexModule) | FunctionPropertyNames<Trending> | ReadonlyKeys<Trending>>;
+    };
+    
+
+    user : {
+      mutation: MutaionAction2Mutation<FunctionProperties<User>>;
+      action: AsyncFunctionProperties<User>;
+      getter: Pick<User, ReadonlyKeys<User>>;
+      state: Omit<User, (keyof VuexModule) | FunctionPropertyNames<User> | ReadonlyKeys<User>>;
     };
     
 }

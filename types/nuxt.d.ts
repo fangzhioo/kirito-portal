@@ -1,16 +1,16 @@
 import { AxiosRequestConfig, AxiosInstance as IAxiosInstance } from 'axios';
-import { Context } from '@nuxt/types';
-import { apitype } from '../app/api';
+import { Context } from '@nuxt/vue-app';
+import API from '../app/api/api';
 
 /** nuxt axios module */
 export interface AxiosInstance extends IAxiosInstance {
   setHeader(name: string, value: any): void;
-  setToken(token: string, type: string): void;
-  onRequest(fn: (config: any) => void): void;
-  onResponse(fn: (response: any) => void): void;
-  onRequestError(fn: (error: Error) => void): void;
-  onResponseError(fn: (error: Error) => void): void;
-  onError(fn: (error: Error) => void): void;
+  setToken(token: string, type: string);
+  onRequest(fn: (config) => void);
+  onResponse(fn: (response) => void);
+  onRequestError(fn: (error: Error) => void);
+  onResponseError(fn: (error: Error) => void);
+  onError(fn: (error: Error) => void);
   $request<T = any>(config: AxiosRequestConfig): Promise<T>;
   $get<T = any>(url: string, config?: AxiosRequestConfig): Promise<T>;
   $delete<T = any>(url: string, config?: AxiosRequestConfig): Promise<T>;
@@ -27,24 +27,23 @@ export type MiddleWare = string | ((ctx: Context, cb?: Function) => Promise<void
 /** nuxt plugin function */
 export type Plugin = (ctx: Context, inject: (name: string, value: any) => void) => Promise<void> | void;
 
-declare module '@nuxt/types' {
+declare module '@nuxt/vue-app/types/index' {
   // extends Context interface
   interface Context {
     $axios: Nuxt.AxiosInstance;
-    $API: apitype;
+    $api: typeof API;
   }
 }
 
-declare module '@nuxt/types' {
+declare module '@nuxt/vue-app/types/index' {
   // extends Context interface
   interface NuxtApp {
     layoutName: string;
-    setLayout(layoutName: string): void;
+    setLayout(layoutName: string);
   }
 }
 
-export { Context } from '@nuxt/types';
+export { Context } from '@nuxt/vue-app';
 
 // UMD module , so we can use global namesapce Nuxt.Context || Nuxt.MiddleWare || Nuxt.Plugin etc;
-// eslint-disable-next-line no-undef
 export as namespace Nuxt;

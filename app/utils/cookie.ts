@@ -1,4 +1,4 @@
-const TOKEN_KEY = 'my_token';
+export const TOKEN_KEY = 'my_token';
 
 export const getToken = () => {
   try {
@@ -6,7 +6,6 @@ export const getToken = () => {
   } catch (error) {
     return '';
   }
-
   // return 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJuaWNrTmFtZVwiOlwi5qGQ5Lq6T19PXCIsXCJ1c2VyTmFtZVwiOlwia2lyaXRvXCIsXCJ1c2VySWRcIjoxLFwiZW1haWxcIjpcIktpcml0b0BnbWFpbC5jb21cIn0iLCJpc3MiOiJraXJpdG8iLCJleHAiOjE1OTY2MjM5NTF9.qqDEIKjrWsA0g_Ht_AONwMRyi5cMb_v-0MdpSI2Hnwk';
 };
 

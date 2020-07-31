@@ -13,32 +13,33 @@
   </div>
 </template>
 
-<script>
-import videoCard from '@/components/VideoCard';
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator';
+import videoCard from '~/components/VideoCard.vue';
 
-export default {
+@Component({
   name: 'Home',
-  components: {
-    videoCard,
-  },
-  data: () => ({
-    loading: true,
-    video: {
-      url: '/watch/12',
-      thumb: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-      title: 'Top western road trips',
-      views: '9.6k',
-      createdAt: '6 hours ago',
-    },
-    channel: {
-      url: '/channels/12',
-      avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
-    },
-  }),
+  components: { videoCard },
+})
+export default class extends Vue {
+  loading: boolean = true;
+  video: any = {
+    url: '/watch/12',
+    thumb: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+    title: 'Top western road trips',
+    views: '9.6k',
+    createdAt: '6 hours ago',
+  };
+
+  channel: any = {
+    url: '/channels/12',
+    avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
+  };
+
   mounted() {
     setTimeout(() => {
       this.loading = false;
     }, 2000);
-  },
-};
+  }
+}
 </script>
