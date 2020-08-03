@@ -3,6 +3,7 @@
     <h1 v-if="error.statusCode === 404">
       {{ pageNotFound }}
     </h1>
+    <h1 v-if="error.statusCode === 403">您还未登陆！请先 <nuxt-link to="/signin">登陆</nuxt-link></h1>
     <h1 v-else>
       {{ otherError }}
     </h1>

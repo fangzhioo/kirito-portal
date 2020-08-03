@@ -12,33 +12,7 @@
           class="mx-lg-0 mx-md-0 mx-sm-auto mx-auto"
         >
           <v-skeleton-loader class="mx-auto" type="list-item-avatar-three-line" :loading="loading" tile large>
-            <v-card class="card" tile flat router to="/watch/dd">
-              <v-row no-gutters>
-                <v-col class="mx-auto" cols="12" sm="8" md="5" lg="4">
-                  <!-- <v-responsive max-height="100%"> -->
-                  <v-img class="align-center" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"> </v-img>
-                  <!-- </v-responsive> -->
-                </v-col>
-                <v-col class="hidden-sm-and-down">
-                  <div class="ml-4">
-                    <v-card-title class="pl-2 pt-0 subtitle-1 font-weight-bold">
-                      Top western road trips
-                      {{ item.title }}
-                    </v-card-title>
-
-                    <v-card-subtitle class="pl-2 pb-0">
-                      1,000 miles of wonder
-                      <v-icon>mdi-circle-small</v-icon>9.6k views<v-icon>mdi-circle-small</v-icon>6 hours ago
-                    </v-card-subtitle>
-                    <v-card-subtitle class="pl-2 pt-0">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae exercitationem minus in
-                      asperiores. Dolorem dicta ea praesentium, repellendus ipsam harum optio, delectus facilis ratione
-                      quam quaerat a architecto hic reprehenderit.
-                    </v-card-subtitle>
-                  </div>
-                </v-col>
-              </v-row>
-            </v-card>
+            <ArticleCard />
           </v-skeleton-loader>
         </v-col>
       </v-row>
@@ -47,8 +21,10 @@
 </template>
 
 <script>
+import ArticleCard from '@/components/ArticleCard';
 export default {
   name: 'Trending',
+  components: { ArticleCard },
   data: () => ({
     loading: true,
   }),

@@ -21,7 +21,7 @@ import videoCard from '~/components/VideoCard.vue';
   name: 'Home',
   components: { videoCard },
 })
-export default class extends Vue {
+export default class HomePage extends Vue {
   loading: boolean = true;
   video: any = {
     url: '/watch/12',
