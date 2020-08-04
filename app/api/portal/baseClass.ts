@@ -1,3 +1,41 @@
+class ArticleVO {
+  /** articleId */
+  articleId = undefined;
+
+  /** authorAvatar */
+  authorAvatar = '';
+
+  /** authorId */
+  authorId = undefined;
+
+  /** authorNickname */
+  authorNickname = '';
+
+  /** cid */
+  cid = undefined;
+
+  /** content */
+  content = '';
+
+  /** cover */
+  cover = '';
+
+  /** gmtCreate */
+  gmtCreate = '';
+
+  /** gmtModified */
+  gmtModified = '';
+
+  /** subtitle */
+  subtitle = '';
+
+  /** title */
+  title = '';
+
+  /** views */
+  views = undefined;
+}
+
 class AuthBO {
   /** token */
   token = '';
@@ -11,13 +49,13 @@ class CommonResult {
   code = undefined;
 
   /** data */
-  data = new AuthBO();
+  data = new ArticleVO();
 
   /** msg */
   msg = '';
 }
 
-class LoginUser {
+class LoginUserBO {
   /** email */
   email = '';
 
@@ -28,7 +66,7 @@ class LoginUser {
   remember = false;
 }
 
-class RegisterUser {
+class RegisterUserBO {
   /** confirmPassword */
   confirmPassword = '';
 
@@ -72,9 +110,10 @@ class SsoUserBO {
 }
 
 export const portal = {
+  ArticleVO,
   AuthBO,
   CommonResult,
-  LoginUser,
-  RegisterUser,
+  LoginUserBO,
+  RegisterUserBO,
   SsoUserBO,
 };

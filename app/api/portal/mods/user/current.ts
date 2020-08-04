@@ -1,7 +1,7 @@
 import { fetch } from '~/utils/fetch';
 
 /**
- * @desc current
+ * @desc 获取当前用户信息，需要携带cookie
  */
 export function request(options) {
   const fetchOption = Object.assign(

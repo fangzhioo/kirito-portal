@@ -1,12 +1,12 @@
 import { fetch } from '~/utils/fetch';
 
 /**
- * @desc 用户登陆
+ * @desc 发表文章
  */
 export function request(bodyParams, options) {
   const fetchOption = Object.assign(
     {
-      url: '/portal/auth/signIn',
+      url: '/portal/article/publish',
       method: 'post',
       headers: {
         'Content-Type': 'application/json',

@@ -3,8 +3,8 @@
     <v-container fluid>
       <v-row>
         <v-col
-          v-for="item in 10"
-          :key="item"
+          v-for="(item, i) in trendingList"
+          :key="i"
           cols="8"
           sm="7"
           md="10"
@@ -12,36 +12,41 @@
           class="mx-lg-0 mx-md-0 mx-sm-auto mx-auto"
         >
           <v-skeleton-loader class="mx-auto" type="list-item-avatar-three-line" :loading="loading" tile large>
-            <ArticleCard />
+            <ArticleCard :data-source="item" />
           </v-skeleton-loader>
         </v-col>
       </v-row>
     </v-container>
   </div>
 </template>
-
-<script>
-import ArticleCard from '@/components/ArticleCard';
-export default {
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator';
+import ArticleCard from '@/components/ArticleCard.vue';
+@Component({
   name: 'Trending',
   components: { ArticleCard },
-  data: () => ({
-    loading: true,
-  }),
+})
+export default class HomePage extends Vue {
+  loading: boolean = false;
+
+  get trendingList() {
+    return this.$store.state.trending.trendingList || [];
+  }
+
   mounted() {
-    // this.$store
-    //   .dispatch({
-    //     type: 'trending/fetchTrendingList',
-    //     payload: {},
-    //   })
-    //   .finally(() => {
-    //     this.loading = false;
-    //   });
-    setTimeout(() => {
-      this.loading = false;
-    }, 3000);
-  },
-};
+    this.$store
+      .dispatch({
+        type: 'trending/fetchTrendingList',
+        payload: {},
+      })
+      .finally(() => {
+        this.loading = false;
+      });
+    // setTimeout(() => {
+    //   this.loading = false;
+    // }, 3000);
+  }
+}
 </script>
 
 <style lang="scss">

@@ -1,6 +1,6 @@
 <template>
   <nav id="navbar">
-    <v-app-bar class="white" flat app clipped-left>
+    <v-app-bar class="white" flat app clipped-left hide-on-scroll>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="font-weight-bold"
         ><router-link to="/" class="black--text" style="text-decoration: none;">VueTube</router-link></v-toolbar-title

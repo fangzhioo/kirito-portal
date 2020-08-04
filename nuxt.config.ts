@@ -43,7 +43,7 @@ export default {
    ** 进度条配置
    */
   loading: {
-    color: '#3B8070',
+    color: '#fc0d1b',
   },
   /*
    ** Global CSS

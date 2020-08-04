@@ -5,6 +5,44 @@ type ObjectMap<Key extends string | number | symbol = any, Value = any> = {
 import { RequestConfig } from '~/utils/fetch';
 
 export namespace portal {
+  export class ArticleVO {
+    /** articleId */
+    articleId: number;
+
+    /** authorAvatar */
+    authorAvatar: string;
+
+    /** authorId */
+    authorId: number;
+
+    /** authorNickname */
+    authorNickname: string;
+
+    /** cid */
+    cid: number;
+
+    /** content */
+    content: string;
+
+    /** cover */
+    cover: string;
+
+    /** gmtCreate */
+    gmtCreate: string;
+
+    /** gmtModified */
+    gmtModified: string;
+
+    /** subtitle */
+    subtitle: string;
+
+    /** title */
+    title: string;
+
+    /** views */
+    views: number;
+  }
+
   export class AuthBO {
     /** token */
     token: string;
@@ -13,7 +51,7 @@ export namespace portal {
     user: portal.SsoUserBO;
   }
 
-  export class CommonResult {
+  export class CommonResult<T0> {
     /** code */
     code: number;
 
@@ -24,7 +62,7 @@ export namespace portal {
     msg: string;
   }
 
-  export class LoginUser {
+  export class LoginUserBO {
     /** email */
     email: string;
 
@@ -35,7 +73,7 @@ export namespace portal {
     remember: boolean;
   }
 
-  export class RegisterUser {
+  export class RegisterUserBO {
     /** confirmPassword */
     confirmPassword: string;
 
@@ -81,11 +119,98 @@ export namespace portal {
 
 export namespace portal {
   /**
+   * Article Controller
+   */
+  export namespace article {
+    /**
+     * 根据id删除文章
+     * /article/del/{id}
+     */
+    export namespace deleteArticleById {
+      export class Params {
+        /** id */
+        id: number;
+      }
+
+      export type ResponseType = Promise<portal.CommonResult<number>>;
+      export function request(params: Params, options?: RequestConfig): ResponseType;
+    }
+
+    /**
+     * 获取文章详情
+     * /article/get/{id}
+     */
+    export namespace getArticleById {
+      export class Params {
+        /** id */
+        id: number;
+      }
+
+      export type ResponseType = Promise<portal.CommonResult<portal.ArticleVO>>;
+      export function request(params: Params, options?: RequestConfig): ResponseType;
+    }
+
+    /**
+     * 获取最新发布的文章列表
+     * /article/list
+     */
+    export namespace getArticleList {
+      export class Params {
+        /** keyword */
+        keyword?: string;
+        /** limit */
+        limit?: number;
+        /** offset */
+        offset?: number;
+      }
+
+      export type ResponseType = Promise<portal.CommonResult<Array<portal.ArticleVO>>>;
+      export function request(params: Params, options?: RequestConfig): ResponseType;
+    }
+
+    /**
+     * 发表文章
+     * /article/publish
+     */
+    export namespace publishArticle {
+      export type ResponseType = Promise<portal.CommonResult<number>>;
+      export function request(bodyParams: portal.ArticleVO, options?: RequestConfig): ResponseType;
+    }
+
+    /**
+     * 获取首页热门
+     * /article/recommend
+     */
+    export namespace getRecommendArticles {
+      export class Params {
+        /** keyword */
+        keyword?: string;
+        /** limit */
+        limit?: number;
+        /** offset */
+        offset?: number;
+      }
+
+      export type ResponseType = Promise<portal.CommonResult<Array<portal.ArticleVO>>>;
+      export function request(params: Params, options?: RequestConfig): ResponseType;
+    }
+
+    /**
+     * 更新文章
+     * /article/update
+     */
+    export namespace updateArticle {
+      export type ResponseType = Promise<portal.CommonResult<number>>;
+      export function request(bodyParams: portal.ArticleVO, options?: RequestConfig): ResponseType;
+    }
+  }
+
+  /**
    * User Controller
    */
   export namespace user {
     /**
-     * current
+     * 获取当前用户信息，需要携带cookie
      * /auth/current
      */
     export namespace current {
@@ -94,27 +219,21 @@ export namespace portal {
     }
 
     /**
-     * signIn
+     * 用户登陆
      * /auth/signIn
      */
     export namespace signIn {
       export type ResponseType = Promise<portal.CommonResult<portal.AuthBO>>;
-      export function request(
-        bodyParams: portal.LoginUser,
-        options?: RequestConfig,
-      ): ResponseType;
+      export function request(bodyParams: portal.LoginUserBO, options?: RequestConfig): ResponseType;
     }
 
     /**
-     * signUp
+     * 用户注册
      * /auth/signUp
      */
     export namespace signUp {
       export type ResponseType = Promise<portal.CommonResult<number>>;
-      export function request(
-        bodyParams: portal.RegisterUser,
-        options?: RequestConfig,
-      ): ResponseType;
+      export function request(bodyParams: portal.RegisterUserBO, options?: RequestConfig): ResponseType;
     }
   }
 }

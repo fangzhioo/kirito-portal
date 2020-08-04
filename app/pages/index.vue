@@ -3,7 +3,7 @@
     <v-container fluid>
       <h3 class="headline font-weight-medium">Recommended</h3>
       <v-row>
-        <v-col v-for="i in 10" :key="i" cols="12" sm="6" md="4" lg="3" class="mx-xs-auto">
+        <v-col v-for="(item, i) in list" :key="i" cols="12" sm="6" md="4" lg="3" class="mx-xs-auto">
           <v-skeleton-loader type="card-avatar" :loading="loading">
             <video-card :card="{ maxWidth: 350 }" :video="video" :channel="channel"></video-card>
           </v-skeleton-loader>
@@ -36,10 +36,19 @@ export default class HomePage extends Vue {
     avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
   };
 
+  get list() {
+    return this.$store.state.home.recommendList || [];
+  }
+
   mounted() {
-    setTimeout(() => {
-      this.loading = false;
-    }, 2000);
+    this.$store
+      .dispatch({
+        type: 'home/fetchRecommendList',
+        payload: {},
+      })
+      .finally(() => {
+        this.loading = false;
+      });
   }
 }
 </script>

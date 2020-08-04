@@ -1,6 +1,6 @@
 <template>
   <nav id="studioBar">
-    <v-app-bar class="white" app clipped-left>
+    <v-app-bar class="white" app clipped-left hide-on-scroll>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="font-weight-bold"
         ><router-link to="/studio/dashboard" class="black--text" style="text-decoration: none;"

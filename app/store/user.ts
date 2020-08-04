@@ -98,7 +98,7 @@ export default class User extends VuexModule {
   }
 
   @MutationAction
-  async signIn({ payload, callback }: ActionParams<defs.portal.LoginUser>) {
+  async signIn({ payload, callback }: ActionParams<defs.portal.LoginUserBO>) {
     const res = await api.portal.user.signIn.request(payload);
     if (callback) {
       callback(res);
@@ -119,7 +119,7 @@ export default class User extends VuexModule {
   }
 
   @MutationAction
-  async signUp({ payload, callback }: ActionParams<defs.portal.RegisterUser>) {
+  async signUp({ payload, callback }: ActionParams<defs.portal.RegisterUserBO>) {
     const res = await api.portal.user.signUp.request(payload);
     if (callback) {
       callback(res);

@@ -1,7 +1,7 @@
 import { fetch } from '~/utils/fetch';
 
 /**
- * @desc signUp
+ * @desc 用户注册
  */
 export function request(bodyParams, options) {
   const fetchOption = Object.assign(
