@@ -6,6 +6,16 @@
           <v-row>
             <v-col cols="12" sm="12" md="8" lg="8">
               <ArticleSection :data-source="articleDetail" :loading="articleLoading" />
+            </v-col>
+            <v-col cols="12" sm="12" md="4" lg="4">
+              <h4 class="mb-3 mt-3">TOC</h4>
+              <ul class="ml-2">
+                <li v-for="i in 10" :key="i">Lorem, ipsum dolor. {{ i }}</li>
+              </ul>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" sm="12" md="8" lg="8">
               <v-skeleton-loader type="card-avatar, article, actions" :loading="commentLoading" tile large>
                 <v-row class="justify-space-between">
                   <v-col>
@@ -86,7 +96,7 @@
             <v-col cols="12" sm="12" md="4" lg="4">
               <hr class="grey--text" />
               <h4 class="mb-3 mt-3">Up next</h4>
-              <div v-for="i in 10" :key="i" class="mb-5">
+              <div v-for="i in 5" :key="i" class="mb-5">
                 <v-skeleton-loader
                   class="mx-auto"
                   type="list-item-avatar-three-line"
