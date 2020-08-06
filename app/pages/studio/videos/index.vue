@@ -4,7 +4,7 @@
     <h2>channel videos</h2>
 
     <!-- <v-row> -->
-    <v-tabs v-model="tab" id="tab" class="mt-5">
+    <v-tabs id="tab" v-model="tab" class="mt-5">
       <v-tab>
         Uploads
       </v-tab>
@@ -129,19 +129,6 @@ export default {
     videos: [],
     itemToDelete: {},
   }),
-  methods: {
-    editItem(item) {
-      this.$router.push({ name: `Detail`, params: { id: item.id } });
-    },
-    deleteBtn(item) {
-      this.dialogDelete = true;
-      this.itemToDelete = item;
-    },
-    deleteItem() {
-      this.dialogDelete = false;
-      this.videos = this.videos.filter((video) => this.itemToDelete.id !== video.id);
-    },
-  },
   mounted() {
     setTimeout(() => {
       this.loading = false;
@@ -175,6 +162,19 @@ export default {
         },
       ];
     }, 2000);
+  },
+  methods: {
+    editItem(item) {
+      this.$router.push({ name: `Detail`, params: { id: item.id } });
+    },
+    deleteBtn(item) {
+      this.dialogDelete = true;
+      this.itemToDelete = item;
+    },
+    deleteItem() {
+      this.dialogDelete = false;
+      this.videos = this.videos.filter((video) => this.itemToDelete.id !== video.id);
+    },
   },
 };
 </script>

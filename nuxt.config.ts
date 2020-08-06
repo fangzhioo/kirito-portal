@@ -127,6 +127,9 @@ export default {
         ];
       },
     },
+    extend(config: any) {
+      config.resolve.alias.vue = 'vue/dist/vue.common';
+    },
   },
   /** typescript config for nuxt */
   typescript: {

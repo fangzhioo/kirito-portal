@@ -108,19 +108,6 @@ export default {
     videos: [],
     itemToDelete: {},
   }),
-  methods: {
-    editItem(item) {
-      this.$router.push({ name: `Detail`, params: { id: item.id } });
-    },
-    deleteBtn(item) {
-      this.dialogDelete = true;
-      this.itemToDelete = item;
-    },
-    deleteItem() {
-      this.dialogDelete = false;
-      this.videos = this.videos.filter((video) => this.itemToDelete.id !== video.id);
-    },
-  },
   mounted() {
     setTimeout(() => {
       this.loading = false;
@@ -154,6 +141,19 @@ export default {
         },
       ];
     }, 2000);
+  },
+  methods: {
+    editItem(item) {
+      this.$router.push({ name: `Detail`, params: { id: item.id } });
+    },
+    deleteBtn(item) {
+      this.dialogDelete = true;
+      this.itemToDelete = item;
+    },
+    deleteItem() {
+      this.dialogDelete = false;
+      this.videos = this.videos.filter((video) => this.itemToDelete.id !== video.id);
+    },
   },
 };
 </script>
