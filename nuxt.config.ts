@@ -3,7 +3,7 @@ import proxy from './app/config/proxy.config';
 
 export default {
   server: {
-    port: 2333, // default: 3000
+    port: 3000, // default: 3000
   },
   /*
    ** Nuxt rendering mode
@@ -16,7 +16,7 @@ export default {
    */
   target: 'server',
   // 页面切换动画
-  transition: 'slide-left',
+  pageTransition: 'slide-left',
   /*
    ** Headers of the page
    ** See https://nuxtjs.org/api/configuration-head

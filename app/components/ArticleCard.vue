@@ -3,7 +3,13 @@
     <v-row no-gutters>
       <v-col class="mx-auto" cols="12" sm="8" md="5" lg="4">
         <v-responsive max-height="100%">
-          <v-img class="align-center" :src="dataSource.cover"> </v-img>
+          <v-img
+            class="align-center"
+            :src="dataSource.cover || ''"
+            :lazy-src="`https://picsum.photos/10/6?image=10`"
+            srcset="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
+          >
+          </v-img>
         </v-responsive>
       </v-col>
       <v-col class="hidden-sm-and-down">

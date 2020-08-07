@@ -163,10 +163,11 @@ export default {
 
   methods: {
     getArticle() {
+      const { id } = this.$route.params || {};
       this.$store
         .dispatch({
           type: 'article/fetchArticleDetail',
-          payload: { id: 4 },
+          payload: { id },
         })
         .finally(() => {
           this.articleLoading = false;
@@ -190,5 +191,7 @@ export default {
 <style lang="scss">
 #article {
   // 2
+  // display: flex;
+  // justify-content: center;
 }
 </style>

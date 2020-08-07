@@ -12,9 +12,9 @@
           </v-card-subtitle>
         </div>
       </v-card>
-      <v-responsive>
+      <v-card flat tile class="mb-10">
         <section v-html="articleContent"></section>
-      </v-responsive>
+      </v-card>
       <v-card flat tile class="card pt-10">
         <div class="action-btns d-flex flex-wrap justify-space-between">
           <v-card-subtitle class="pl-0 pt-0 pb-0 subtitle-1" style="line-height: 2.4em;">
@@ -49,7 +49,7 @@
         </v-col>
         <v-col class="pl-11" offset="1" cols="11" md="11">
           <p>
-            {{ truncate ? truncateText(dataSource.subtitle, 150) : dataSource.subtitle }}
+            {{ truncateText(dataSource.subtitle, 150) }}
           </p>
           <v-btn text class="remove-hover-bg" @click="show">{{ `${truncate ? 'Show More' : 'Show Less'}` }}</v-btn>
         </v-col>
@@ -87,13 +87,13 @@ export default class name extends Vue {
   }
 
   truncateText(string = '', num: number) {
-    if (string.length === 0) {
+    if (!string) {
       return '暂无描述！';
     }
-    if (string.length <= num) {
-      return string;
+    if (this.truncate && string.length > num) {
+      return string.slice(0, num);
     }
-    return string.slice(0, num);
+    return string;
   }
 }
 </script>

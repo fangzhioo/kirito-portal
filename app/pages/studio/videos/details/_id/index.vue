@@ -90,7 +90,7 @@
 <script>
 export default {
   layout: 'studioLayout',
-  name: 'Details',
+  name: 'VideoDetailsPage',
   data() {
     return {
       // dialog: this.openDialog ? this.openDialog : false,

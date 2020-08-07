@@ -144,7 +144,7 @@ export default {
   },
   methods: {
     editItem(item) {
-      this.$router.push({ name: `Detail`, params: { id: item.id } });
+      this.$router.push({ name: `ArticlePublishPage`, params: { id: item.id } });
     },
     deleteBtn(item) {
       this.dialogDelete = true;

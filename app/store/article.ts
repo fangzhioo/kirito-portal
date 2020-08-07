@@ -23,4 +23,11 @@ export default class Article extends VuexModule {
       articleDetail: {},
     };
   }
+
+  @MutationAction
+  async postPublishArticle({ payload, callback }: ActionParams<defs.portal.ArticleVO>) {
+    const res = await api.portal.article.publishArticle.request(payload);
+    callback && callback(res);
+    return {};
+  }
 }
