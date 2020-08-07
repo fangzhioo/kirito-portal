@@ -23,14 +23,14 @@
           <v-card-actions class="pt-0 pl-0 grey--text">
             <v-btn text><v-icon class="pr-2">mdi-thumb-up</v-icon> 1.5k</v-btn>
             <v-btn text><v-icon class="pr-2">mdi-thumb-down</v-icon> 1.5k</v-btn>
-            <v-btn text><v-icon>mdi-share</v-icon> Share</v-btn>
-            <v-btn text><v-icon>mdi-playlist-plus</v-icon> Save</v-btn>
+            <v-btn text><v-icon>mdi-share</v-icon></v-btn>
+            <v-btn text><v-icon>mdi-playlist-plus</v-icon></v-btn>
           </v-card-actions>
         </div>
       </v-card>
 
       <v-row>
-        <v-col cols="6" sm="6" md="5" lg="5">
+        <v-col xl="12" sm="6" md="5" lg="5">
           <v-card class="transparent" flat>
             <v-list-item three-line>
               <v-list-item-avatar size="50"><v-img :src="dataSource.authorAvatar" alt=""></v-img></v-list-item-avatar>
@@ -41,7 +41,7 @@
             </v-list-item>
           </v-card>
         </v-col>
-        <v-col cols="6" sm="6" md="4" lg="4">
+        <v-col xl="12" sm="6" md="4" lg="4">
           <div class="d-flex justify-end align-center">
             <v-btn class="red white--text mt-6" tile large depressed>Subscribed</v-btn>
             <v-btn icon class="ml-5 mt-6"><v-icon>mdi-bell</v-icon></v-btn>

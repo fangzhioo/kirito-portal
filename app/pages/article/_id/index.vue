@@ -4,10 +4,10 @@
       <v-row>
         <v-col cols="11" class="mx-auto">
           <v-row>
-            <v-col cols="12" sm="12" md="8" lg="8">
+            <v-col xl="12" sm="12" md="8" lg="8">
               <ArticleSection :data-source="articleDetail" :loading="articleLoading" />
             </v-col>
-            <v-col cols="12" sm="12" md="4" lg="4">
+            <v-col xl="0" sm="0" md="4" lg="4">
               <h4 class="mb-3 mt-3">TOC</h4>
               <ul class="ml-2">
                 <li v-for="i in 10" :key="i">Lorem, ipsum dolor. {{ i }}</li>
