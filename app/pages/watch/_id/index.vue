@@ -200,7 +200,7 @@ export default {
         subscribers: '100k',
         createdAt: '6 hours ago',
         views: '200,459',
-        videoUrl: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
+        videoUrl: 'http://fangzhioo.oss-cn-hangzhou.aliyuncs.com/images/646aa0d8a3d4f488f8bbff95d0161a6e.mp4',
         title: 'Attendance Management System',
         description:
           'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa vel inventore voluptatum reiciendis delectus quibusdam incidunt consequuntur, nostrum aperiam, natus quidem qui corrupti reprehenderit quaerat neque voluptatibus? Ullam, maiores temporibus!',

@@ -165,7 +165,7 @@ export default {
   },
   methods: {
     editItem(item) {
-      this.$router.push({ name: `Detail`, params: { id: item.id } });
+      this.$router.push({ name: `studio-videos-details-id`, params: { id: item.id } });
     },
     deleteBtn(item) {
       this.dialogDelete = true;
