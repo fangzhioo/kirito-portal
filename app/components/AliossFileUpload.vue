@@ -229,7 +229,7 @@ export default {
         .then((result) => {
           this.debug && console.log('put success: %j', result);
           // eslint-disable-next-line prefer-const
-          let { url, name } = result;
+          let { url } = result;
           // 处理错误的情况
           if (!url) {
             url = result.res.requestUrls[0].split('?')[0];
@@ -238,7 +238,7 @@ export default {
           this.$emit('success', {
             path: ossPath,
             url,
-            name,
+            name: file.name,
           });
         })
         .catch((err) => {
