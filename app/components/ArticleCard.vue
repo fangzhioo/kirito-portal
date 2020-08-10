@@ -5,7 +5,7 @@
         <v-responsive max-height="100%">
           <v-img
             class="align-center"
-            :src="dataSource.cover || ''"
+            :src="dataSource.thumb || ''"
             :lazy-src="`https://picsum.photos/10/6?image=10`"
             srcset="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
           >

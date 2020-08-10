@@ -17,9 +17,6 @@ class ArticleVO {
   /** content */
   content = '';
 
-  /** cover */
-  cover = '';
-
   /** gmtCreate */
   gmtCreate = '';
 
@@ -28,6 +25,9 @@ class ArticleVO {
 
   /** subtitle */
   subtitle = '';
+
+  /** thumb */
+  thumb = '';
 
   /** title */
   title = '';
@@ -109,6 +109,50 @@ class SsoUserBO {
   userName = '';
 }
 
+class VideoVO {
+  /** authorAvatar */
+  authorAvatar = '';
+
+  /** authorId */
+  authorId = undefined;
+
+  /** authorNickname */
+  authorNickname = '';
+
+  /** cid */
+  cid = undefined;
+
+  /** content */
+  content = '';
+
+  /** desc */
+  desc = '';
+
+  /** gmtCreate */
+  gmtCreate = '';
+
+  /** gmtModified */
+  gmtModified = '';
+
+  /** likes */
+  likes = undefined;
+
+  /** status */
+  status = undefined;
+
+  /** thumb */
+  thumb = '';
+
+  /** title */
+  title = '';
+
+  /** videoId */
+  videoId = undefined;
+
+  /** views */
+  views = undefined;
+}
+
 export const portal = {
   ArticleVO,
   AuthBO,
@@ -116,4 +160,5 @@ export const portal = {
   LoginUserBO,
   RegisterUserBO,
   SsoUserBO,
+  VideoVO,
 };

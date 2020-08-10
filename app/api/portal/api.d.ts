@@ -24,9 +24,6 @@ export namespace portal {
     /** content */
     content: string;
 
-    /** cover */
-    cover: string;
-
     /** gmtCreate */
     gmtCreate: string;
 
@@ -35,6 +32,9 @@ export namespace portal {
 
     /** subtitle */
     subtitle: string;
+
+    /** thumb */
+    thumb: string;
 
     /** title */
     title: string;
@@ -51,7 +51,7 @@ export namespace portal {
     user: portal.SsoUserBO;
   }
 
-  export class CommonResult<T0> {
+  export class CommonResult {
     /** code */
     code: number;
 
@@ -115,6 +115,50 @@ export namespace portal {
     /** userName */
     userName: string;
   }
+
+  export class VideoVO {
+    /** authorAvatar */
+    authorAvatar: string;
+
+    /** authorId */
+    authorId: number;
+
+    /** authorNickname */
+    authorNickname: string;
+
+    /** cid */
+    cid: number;
+
+    /** content */
+    content: string;
+
+    /** desc */
+    desc: string;
+
+    /** gmtCreate */
+    gmtCreate: string;
+
+    /** gmtModified */
+    gmtModified: string;
+
+    /** likes */
+    likes: number;
+
+    /** status */
+    status: number;
+
+    /** thumb */
+    thumb: string;
+
+    /** title */
+    title: string;
+
+    /** videoId */
+    videoId: number;
+
+    /** views */
+    views: number;
+  }
 }
 
 export namespace portal {
@@ -133,7 +177,10 @@ export namespace portal {
       }
 
       export type ResponseType = Promise<portal.CommonResult<number>>;
-      export function request(params: Params, options?: RequestConfig): ResponseType;
+      export function request(
+        params: Params,
+        options?: RequestConfig,
+      ): ResponseType;
     }
 
     /**
@@ -147,7 +194,10 @@ export namespace portal {
       }
 
       export type ResponseType = Promise<portal.CommonResult<portal.ArticleVO>>;
-      export function request(params: Params, options?: RequestConfig): ResponseType;
+      export function request(
+        params: Params,
+        options?: RequestConfig,
+      ): ResponseType;
     }
 
     /**
@@ -164,8 +214,13 @@ export namespace portal {
         offset?: number;
       }
 
-      export type ResponseType = Promise<portal.CommonResult<Array<portal.ArticleVO>>>;
-      export function request(params: Params, options?: RequestConfig): ResponseType;
+      export type ResponseType = Promise<
+        portal.CommonResult<Array<portal.ArticleVO>>
+      >;
+      export function request(
+        params: Params,
+        options?: RequestConfig,
+      ): ResponseType;
     }
 
     /**
@@ -174,7 +229,10 @@ export namespace portal {
      */
     export namespace publishArticle {
       export type ResponseType = Promise<portal.CommonResult<number>>;
-      export function request(bodyParams: portal.ArticleVO, options?: RequestConfig): ResponseType;
+      export function request(
+        bodyParams: portal.ArticleVO,
+        options?: RequestConfig,
+      ): ResponseType;
     }
 
     /**
@@ -191,8 +249,13 @@ export namespace portal {
         offset?: number;
       }
 
-      export type ResponseType = Promise<portal.CommonResult<Array<portal.ArticleVO>>>;
-      export function request(params: Params, options?: RequestConfig): ResponseType;
+      export type ResponseType = Promise<
+        portal.CommonResult<Array<portal.ArticleVO>>
+      >;
+      export function request(
+        params: Params,
+        options?: RequestConfig,
+      ): ResponseType;
     }
 
     /**
@@ -201,7 +264,10 @@ export namespace portal {
      */
     export namespace updateArticle {
       export type ResponseType = Promise<portal.CommonResult<number>>;
-      export function request(bodyParams: portal.ArticleVO, options?: RequestConfig): ResponseType;
+      export function request(
+        bodyParams: portal.ArticleVO,
+        options?: RequestConfig,
+      ): ResponseType;
     }
   }
 
@@ -224,7 +290,10 @@ export namespace portal {
      */
     export namespace signIn {
       export type ResponseType = Promise<portal.CommonResult<portal.AuthBO>>;
-      export function request(bodyParams: portal.LoginUserBO, options?: RequestConfig): ResponseType;
+      export function request(
+        bodyParams: portal.LoginUserBO,
+        options?: RequestConfig,
+      ): ResponseType;
     }
 
     /**
@@ -233,7 +302,96 @@ export namespace portal {
      */
     export namespace signUp {
       export type ResponseType = Promise<portal.CommonResult<number>>;
-      export function request(bodyParams: portal.RegisterUserBO, options?: RequestConfig): ResponseType;
+      export function request(
+        bodyParams: portal.RegisterUserBO,
+        options?: RequestConfig,
+      ): ResponseType;
+    }
+  }
+
+  /**
+   * Video Controller
+   */
+  export namespace video {
+    /**
+     * deleteVideoById
+     * /video/del/{id}
+     */
+    export namespace deleteVideoById {
+      export class Params {
+        /** id */
+        id: number;
+      }
+
+      export type ResponseType = Promise<portal.CommonResult<number>>;
+      export function request(
+        params: Params,
+        options?: RequestConfig,
+      ): ResponseType;
+    }
+
+    /**
+     * getVideoById
+     * /video/get/{id}
+     */
+    export namespace getVideoById {
+      export class Params {
+        /** id */
+        id: number;
+      }
+
+      export type ResponseType = Promise<portal.CommonResult<portal.VideoVO>>;
+      export function request(
+        params: Params,
+        options?: RequestConfig,
+      ): ResponseType;
+    }
+
+    /**
+     * getVideoList
+     * /video/list
+     */
+    export namespace getVideoList {
+      export class Params {
+        /** keyword */
+        keyword?: string;
+        /** limit */
+        limit?: number;
+        /** offset */
+        offset?: number;
+      }
+
+      export type ResponseType = Promise<
+        portal.CommonResult<Array<portal.VideoVO>>
+      >;
+      export function request(
+        params: Params,
+        options?: RequestConfig,
+      ): ResponseType;
+    }
+
+    /**
+     * publishVideo
+     * /video/publish
+     */
+    export namespace publishVideo {
+      export type ResponseType = Promise<portal.CommonResult<number>>;
+      export function request(
+        bodyParams: portal.VideoVO,
+        options?: RequestConfig,
+      ): ResponseType;
+    }
+
+    /**
+     * updateVideo
+     * /video/update
+     */
+    export namespace updateVideo {
+      export type ResponseType = Promise<portal.CommonResult<number>>;
+      export function request(
+        bodyParams: portal.VideoVO,
+        options?: RequestConfig,
+      ): ResponseType;
     }
   }
 }

@@ -1,24 +1,31 @@
 <template>
-  <client-only>
-    <div class="vue-oss-upload-input" :style="initSize">
-      <v-progress-circular
-        v-if="loading"
-        :indeterminate="indeterminate"
-        :value="progressVal"
-        :size="swidth - 20"
-        color="primary"
-      >
-        {{ `${progressVal}` }}
-      </v-progress-circular>
-      <i v-else class="icon">+</i>
-      <input :id="id" type="file" @change="upload" />
-    </div>
-  </client-only>
+  <div class="upload-wapper" @click="handleWapperClick">
+    <slot>
+      <div class="vue-oss-upload-input">
+        <v-progress-circular
+          v-if="loading"
+          :indeterminate="indeterminate"
+          :value="progressVal"
+          :size="50"
+          color="primary"
+        >
+          {{ `${progressVal}` }}
+        </v-progress-circular>
+        <i v-else class="icon">+</i>
+      </div>
+    </slot>
+    <input :id="id" ref="input" type="file" class="file-input" hidden @change="upload" />
+  </div>
 </template>
 
 <script>
 import md5 from 'blueimp-md5';
-
+const aliossConfig = {
+  accessKeyId: 'LTAI4G94S3v2QKcvky1Ft8ht',
+  endpoint: 'oss-cn-hangzhou.aliyuncs.com',
+  secret: 'zQgNdz6qYCV0H7yJVizyk8jCDptoBR',
+  bucket: 'fangzhioo',
+};
 export default {
   name: 'AliossUploader',
   props: {
@@ -46,25 +53,6 @@ export default {
       type: String,
       default: '',
     },
-    swidth: {
-      type: Number,
-      default: 70,
-    },
-    sheight: {
-      type: Number,
-      default: 70,
-    },
-    keySet: {
-      type: Object,
-      default() {
-        return {
-          accessKeyId: 'LTAI4G94S3v2QKcvky1Ft8ht',
-          endpoint: 'oss-cn-hangzhou.aliyuncs.com',
-          secret: 'zQgNdz6qYCV0H7yJVizyk8jCDptoBR',
-          bucket: 'fangzhioo',
-        };
-      },
-    },
   },
   data() {
     return {
@@ -73,34 +61,18 @@ export default {
       success: false,
       loading: true,
       client: null,
-      localKeySet: {},
+      localKeySet: { ...aliossConfig },
       fileReg: /\.(png|jpe?g|gif|svg|flv|mp4|wav|mp3|pcm)(\?.*)?$/,
       tempCheckpoint: undefined,
       progress: 0,
     };
   },
   computed: {
-    initSize() {
-      const style = {
-        width: this.swidth + 'px',
-        height: this.sheight + 'px',
-        lineHeight: this.sheight - 4 + 'px',
-      };
-      return style;
-    },
     indeterminate() {
       return this.progress === 0;
     },
     progressVal() {
       return Math.floor(this.progress * 100);
-    },
-  },
-  watch: {
-    keySet: {
-      handler(_val, _old) {
-        this.preInit();
-      },
-      deep: true,
     },
   },
   created() {
@@ -114,22 +86,6 @@ export default {
       // https://help.aliyun.com/document_detail/32069.html 控制台需要设置这些
       this.LoadJS('js_aliyun_oss', 'https://gosspublic.alicdn.com/aliyun-oss-sdk-6.8.0.min.js');
       this.preInit();
-    }
-  },
-  mounted() {
-    if (this.keySet && this.keySet.accessKeyId) {
-      this.localKeySet = this.keySet;
-    } else if (window._AliossUploaderConfig) {
-      this.localKeySet = {
-        accessKeyId: window._AliossUploaderConfig.accessKeyId,
-        endpoint: window._AliossUploaderConfig.endpoint,
-        secret: window._AliossUploaderConfig.secret,
-        bucket: window._AliossUploaderConfig.bucket,
-      };
-    } else {
-      console.error('oss配置信息缺失');
-      this.error = true;
-      this.$emit('error', { msg: 'oss配置信息缺失' });
     }
   },
   methods: {
@@ -255,6 +211,11 @@ export default {
         this.client.cancel();
       }
     },
+    handleWapperClick() {
+      if (this.$refs.input && this.$refs.input.click) {
+        this.$refs.input.click();
+      }
+    },
     LoadJS(sId, fileUrl, callback) {
       const dom = document.querySelector(sId);
       if (!dom) {
@@ -280,6 +241,12 @@ export default {
 </script>
 
 <style lang="scss">
+.upload-wapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
 .vue-oss-upload-input {
   position: relative;
   display: inline-block;
@@ -294,17 +261,6 @@ export default {
     font-size: 36px;
     color: #aaa;
     display: block;
-  }
-  input {
-    width: 100%;
-    height: 100%;
-
-    /* margin-top: -66px; */
-    opacity: 0;
-    position: absolute;
-    padding: 0;
-    top: 0;
-    left: 0;
   }
 }
 </style>
