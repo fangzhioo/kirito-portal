@@ -42,9 +42,6 @@ export default class HomePage extends Vue {
       .finally(() => {
         this.loading = false;
       });
-    // setTimeout(() => {
-    //   this.loading = false;
-    // }, 3000);
   }
 }
 </script>

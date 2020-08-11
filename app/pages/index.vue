@@ -5,7 +5,7 @@
       <v-row>
         <v-col v-for="(item, i) in list" :key="i" cols="12" sm="6" md="4" lg="3" class="mx-xs-auto">
           <v-skeleton-loader type="card-avatar" :loading="loading">
-            <video-card :card="{ maxWidth: 350 }" :video="video" :channel="channel"></video-card>
+            <video-card :card="{ maxWidth: 350 }" :video="item"></video-card>
           </v-skeleton-loader>
         </v-col>
       </v-row>
@@ -23,18 +23,6 @@ import videoCard from '~/components/VideoCard.vue';
 })
 export default class HomePage extends Vue {
   loading: boolean = true;
-  video: any = {
-    url: '/watch/12',
-    thumb: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-    title: 'Top western road trips',
-    views: '9.6k',
-    createdAt: '6 hours ago',
-  };
-
-  channel: any = {
-    url: '/channels/12',
-    avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
-  };
 
   get list() {
     return this.$store.state.home.recommendList || [];

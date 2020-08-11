@@ -8,11 +8,11 @@ type ActionParams<T> = {
 
 @Module({ name: 'Home', stateFactory: true })
 export default class Home extends VuexModule {
-  recommendList: defs.portal.ArticleVO[] = [];
+  recommendList: defs.portal.VideoVO[] = [];
 
   @MutationAction
-  async fetchRecommendList({ payload, callback }: ActionParams<defs.portal.article.getRecommendArticles.Params>) {
-    const res = await api.portal.article.getRecommendArticles.request(payload);
+  async fetchRecommendList({ payload, callback }: ActionParams<defs.portal.video.getVideoList.Params>) {
+    const res = await api.portal.video.getVideoList.request(payload);
     callback && callback(res);
     if (res && res.code === 200) {
       return {

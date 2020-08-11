@@ -1,8 +1,15 @@
 <template>
   <div class="pb-10 article-publish-page">
     <v-skeleton-loader :loading="loading" type="list-item-three-line" class="mx-auto">
-      <v-text-field v-model="title" class="page-title" placeholder="Title" full-width counter="50"></v-text-field>
-      <TiptapEditor ref="tiptapEditor" v-model="content" />
+      <ImageUploader v-model="formData.thumb" />
+      <v-text-field
+        v-model="formData.title"
+        class="page-title"
+        placeholder="Title"
+        full-width
+        counter="50"
+      ></v-text-field>
+      <TiptapEditor ref="tiptapEditor" v-model="formData.content" />
       <v-btn color="primary" @click="handleSubmit">Submit</v-btn>
     </v-skeleton-loader>
   </div>
@@ -12,31 +19,33 @@
 import { Vue, Component } from 'nuxt-property-decorator';
 import { isEmpty } from 'lodash';
 import TiptapEditor from '@/components/TiptapEditor/index.vue';
+import ImageUploader from '@/components/AliossFileUpload/ImageUploader.vue';
 
 @Component({
   name: 'ArticlePublishPage',
   layout: 'studioLayout',
-  components: { TiptapEditor },
+  components: { TiptapEditor, ImageUploader },
 })
 export default class name extends Vue {
-  title: string = ``;
-  content: string = ``;
+  formData: any = {
+    title: ``,
+    content: ``,
+    thumb: '',
+  };
+
   loading: boolean = true;
 
   handleSubmit() {
-    if (isEmpty(this.title)) {
+    if (isEmpty(this.formData.title)) {
       alert('标题不能为空！');
       return;
     }
-    if (isEmpty(this.content)) {
+    if (isEmpty(this.formData.content)) {
       alert('正文不能为空');
       return;
     }
-    const payload = {
-      title: this.title,
-      content: this.content,
-    };
-    console.log(payload);
+    const payload = { ...this.formData };
+
     this.$store.dispatch({
       type: 'article/postPublishArticle',
       payload,

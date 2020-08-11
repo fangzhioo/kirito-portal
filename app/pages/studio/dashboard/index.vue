@@ -6,7 +6,15 @@
         <div class="right">
           <v-tooltip bottom>
             <template v-slot:activator="{ on: tooltip }">
-              <v-btn class="mr-4 white" icon @click="dialog = true" v-on="{ ...tooltip }"
+              <v-btn class="mr-4 white" icon to="/studio/article/publish/0" v-on="{ ...tooltip }"
+                ><v-icon size="25" class="small">mdi-pen</v-icon></v-btn
+              >
+            </template>
+            <span>Publish article</span>
+          </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on: tooltip }">
+              <v-btn class="mr-4 white" icon to="/studio/video/publish" v-on="{ ...tooltip }"
                 ><v-icon size="25" class="small">mdi-upload</v-icon></v-btn
               >
             </template>
@@ -131,23 +139,19 @@
         </v-col>
       </v-row>
     </v-container>
-    <upload-video-modal :open-dialog="dialog" @closeDialog="dialog = false" />
     <subscribers-modal :open-dialog="subscribersDialog" @closeDialog="subscribersDialog = false" />
   </div>
 </template>
 
 <script>
-import UploadVideoModal from '@/components/UploadVideoModal';
 import SubscribersModal from '@/components/SubscribersModal';
 export default {
   layout: 'studioLayout',
   components: {
-    UploadVideoModal,
     SubscribersModal,
   },
   data: () => ({
     loading: true,
-    dialog: false,
     subscribersDialog: false,
   }),
   mounted() {},

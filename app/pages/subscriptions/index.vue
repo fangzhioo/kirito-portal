@@ -2,16 +2,16 @@
   <div>
     subscriptions 订阅内容
     <div>
-      <AliossFileUpload />
+      <ImageUploader />
     </div>
   </div>
 </template>
 
 <script>
-import AliossFileUpload from '@/components/AliossFileUpload';
+import ImageUploader from '@/components/AliossFileUpload/ImageUploader';
 
 export default {
-  components: { AliossFileUpload },
+  components: { ImageUploader },
   data() {
     return {};
   },

@@ -147,7 +147,7 @@ export default {
           },
           {
             title: 'Articles',
-            link: '/studio/articles',
+            link: '/studio/article',
             icon: 'mdi-puzzle',
           },
           {

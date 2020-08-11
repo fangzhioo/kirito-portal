@@ -1,21 +1,26 @@
 <template>
-  <div class="upload-wapper" @click="handleWapperClick">
-    <slot>
-      <div class="vue-oss-upload-input">
-        <v-progress-circular
-          v-if="loading"
-          :indeterminate="indeterminate"
-          :value="progressVal"
-          :size="50"
-          color="primary"
-        >
-          {{ `${progressVal}` }}
-        </v-progress-circular>
-        <i v-else class="icon">+</i>
-      </div>
-    </slot>
-    <input :id="id" ref="input" type="file" class="file-input" hidden @change="upload" />
-  </div>
+  <v-skeleton-loader type="image" :loading="initLoading" class="mx-auto">
+    <div class="upload-wapper" @click.stop="handleWapperClick">
+      <slot>
+        <div class="vue-oss-upload-input">
+          <v-progress-circular
+            v-if="loading || progressVal === 100"
+            :indeterminate="indeterminate"
+            :value="progressVal"
+            :size="50"
+            :color="progressVal === 100 ? 'success' : 'primary'"
+          >
+            {{ `${progressVal === 100 ? 'OK' : progressVal}` }}
+          </v-progress-circular>
+          <template v-else>
+            <i class="icon">+</i>
+            <p>{{ label }}</p>
+          </template>
+        </div>
+      </slot>
+      <input :id="id" ref="input" type="file" class="file-input" hidden @change="upload" />
+    </div>
+  </v-skeleton-loader>
 </template>
 
 <script>
@@ -45,13 +50,13 @@ export default {
       type: String,
       default: '',
     },
-    fileType: {
-      type: String,
-      default: 'img',
-    },
     fileSuffix: {
       type: String,
       default: '',
+    },
+    label: {
+      type: String,
+      default: '请选择文件',
     },
   },
   data() {
@@ -59,7 +64,8 @@ export default {
       id: 'upload-input-file',
       error: false,
       success: false,
-      loading: true,
+      initLoading: true,
+      loading: false,
       client: null,
       localKeySet: { ...aliossConfig },
       fileReg: /\.(png|jpe?g|gif|svg|flv|mp4|wav|mp3|pcm)(\?.*)?$/,
@@ -98,11 +104,11 @@ export default {
           clearInterval(timer);
           timer = null;
           this.debug && window.console.log('阿里云oss初始化完成');
-          this.loading = false;
+          this.initLoading = false;
           this.error = false;
         } else {
           this.debug && window.console.log('阿里云oss初始化中...');
-          this.loading = true;
+          this.initLoading = true;
         }
       }, 500);
     },
@@ -151,27 +157,35 @@ export default {
       const file = e.target.files[0];
       let ossPath = '';
       if (!file) {
-        alert('您未选择上传文件');
+        this.$emit('error', { msg: '您未选择上传文件' });
         return;
       }
       // 清空input内容,以便重复触发change
       e.target.value = '';
       if (!this.fileReg.test(file.name.toLowerCase())) {
-        alert('此组件只支持 png|jpeg|jpg|gif|svg|flv|mp4|wav|mp3|pcm 类型的文件');
+        this.$emit('error', { msg: '此组件只支持 png|jpeg|jpg|gif|svg|flv|mp4|wav|mp3|pcm 类型的文件' });
         return;
       }
-      if (this.fileSuffix !== '' && '.' + this.fileSuffix !== this.get_suffix(file.name)) {
-        alert('必须选择类型为的' + this.fileSuffix + '文件');
+      const suffix = this.get_suffix(file.name);
+      if (this.fileSuffix !== '' && !this.fileSuffix.includes(suffix)) {
+        this.$emit('error', { msg: '不支持的文件类型(' + suffix + ')' });
         return;
       }
+
+      if (file.size >= 200000000) {
+        this.$emit('error', { msg: '当前文件超出200M，无法上传' });
+        return;
+      }
+
       if (this.nameMode === 'name') {
         ossPath = `${this.path}${this.name}${file.name}`;
       } else {
         // 防止同一文件多次上传造成的空间浪费
         const token = file.name + file.lastModifiedDate + file.size + file.type;
-        ossPath = `${this.path}${this.name}${md5(token)}${this.get_suffix(file.name)}`;
+        ossPath = `${this.path}${this.name}${md5(token)}.${suffix}`;
       }
       this.debug && console.log(file.name + ' => ' + ossPath);
+      this.$emit('beforeUpload', ossPath);
       this.loading = true;
       this.client
         .multipartUpload(ossPath, file, {
@@ -180,6 +194,7 @@ export default {
             this.tempCheckpoint = checkpoint;
             // 进度条
             this.progress = p;
+            this.$emit('progress', p);
           },
         })
         .then((result) => {
@@ -230,11 +245,10 @@ export default {
     },
     get_suffix(filename) {
       const pos = filename.lastIndexOf('.');
-      let suffix = '';
       if (pos !== -1) {
-        suffix = filename.substring(pos);
+        return filename.substring(pos + 1);
       }
-      return suffix;
+      return '';
     },
   },
 };
@@ -249,18 +263,20 @@ export default {
 }
 .vue-oss-upload-input {
   position: relative;
-  display: inline-block;
   text-align: center;
-  width: 70px;
-  height: 70px;
-  border-radius: 5px;
-  border: 2px dashed #aaa;
-  line-height: 66px;
+  font-size: 12px;
+  color: #aaa;
   i.icon {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    border-radius: 5px;
+    border: 2px dashed #aaa;
+    line-height: 66px;
     font-style: normal;
     font-size: 36px;
     color: #aaa;
-    display: block;
+    margin-bottom: 6px;
   }
 }
 </style>

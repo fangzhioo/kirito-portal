@@ -7,15 +7,15 @@
             <v-col cols="12" sm="12" md="8" lg="8">
               <v-skeleton-loader type="card-avatar, article, actions" :loading="videoLoading" tile large>
                 <v-responsive>
-                  <video controls>
-                    <source :src="video.videoUrl" type="video/mp4" />
+                  <video :poster="videoDetail.thumb || ''" controls>
+                    <source :src="videoDetail.content" type="video/mp4" />
                   </video>
                 </v-responsive>
                 <v-card flat tile class="card">
-                  <v-card-title class="pl-0 pb-0">{{ video.title }}</v-card-title>
+                  <v-card-title class="pl-0 pb-0">{{ videoDetail.title }}</v-card-title>
                   <div id="btns" class="d-flex flex-wrap justify-space-between">
                     <v-card-subtitle class="pl-0 pt-0 pb-0 subtitle-1" style="line-height: 2.4em;">
-                      {{ video.views }} views<v-icon>mdi-circle-small</v-icon>{{ video.createdAt }}
+                      {{ videoDetail.views }} views<v-icon>mdi-circle-small</v-icon>{{ videoDetail.gmtCreate }}
                     </v-card-subtitle>
                     <v-card-actions class="pt-0 pl-0 grey--text">
                       <v-btn text><v-icon class="pr-2">mdi-thumb-up</v-icon> 1.5k</v-btn>
@@ -31,11 +31,13 @@
                     <v-card class="transparent" flat>
                       <v-list-item three-line>
                         <v-list-item-avatar size="50"
-                          ><v-img src="https://randomuser.me/api/portraits/men/1.jpg"></v-img
+                          ><v-img :src="videoDetail.authorAvatar || ''"></v-img
                         ></v-list-item-avatar>
                         <v-list-item-content class="align-self-auto">
-                          <v-list-item-title class="font-weight-medium mb-1">Tech Reagan</v-list-item-title>
-                          <v-list-item-subtitle>{{ video.subscribers }} subscribers </v-list-item-subtitle>
+                          <v-list-item-title class="font-weight-medium mb-1">
+                            {{ videoDetail.authorNickname }}
+                          </v-list-item-title>
+                          <v-list-item-subtitle>2333 subscribers </v-list-item-subtitle>
                         </v-list-item-content>
                       </v-list-item>
                     </v-card>
@@ -48,7 +50,7 @@
                   </v-col>
                   <v-col class="pl-11" offset="1" cols="11" md="11">
                     <p>
-                      {{ truncate ? truncateText(video.description, 150) : video.description }}
+                      {{ truncateText(videoDetail.desc, 150) }}
                     </p>
                     <v-btn text class="remove-hover-bg" @click="show">{{
                       `${truncate ? 'Show More' : 'Show Less'}`
@@ -185,40 +187,43 @@ export default {
     showCommentBtns: false,
     repliesInput: {},
   }),
+  computed: {
+    videoDetail() {
+      return this.$store.state.video.videoDetail;
+    },
+  },
   mounted() {
     setTimeout(() => {
       this.loading = false;
       this.videoLoading = false;
-      this.getVideos();
     }, 400);
+    this.getVideos();
   },
 
   methods: {
     getVideos() {
-      const info = {
-        channelName: 'Tech Reagan',
-        subscribers: '100k',
-        createdAt: '6 hours ago',
-        views: '200,459',
-        videoUrl: 'http://fangzhioo.oss-cn-hangzhou.aliyuncs.com/images/646aa0d8a3d4f488f8bbff95d0161a6e.mp4',
-        title: 'Attendance Management System',
-        description:
-          'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa vel inventore voluptatum reiciendis delectus quibusdam incidunt consequuntur, nostrum aperiam, natus quidem qui corrupti reprehenderit quaerat neque voluptatibus? Ullam, maiores temporibus!',
-      };
       this.loading = true;
       this.videoLoading = true;
-      new Promise(function (resolve) {
-        setTimeout(() => {
-          resolve(info);
-        }, 1500);
-      })
-        .then((res) => {
-          this.video = res;
+      const { id } = this.$route.params || {};
+      this.$store
+        .dispatch({
+          type: 'video/fetchVideoDetail',
+          payload: { id },
         })
         .finally(() => {
           this.loading = false;
           this.videoLoading = false;
         });
+      // const info = {
+      //   channelName: 'Tech Reagan',
+      //   subscribers: '100k',
+      //   createdAt: '6 hours ago',
+      //   views: '200,459',
+      //   videoUrl: 'http://fangzhioo.oss-cn-hangzhou.aliyuncs.com/images/646aa0d8a3d4f488f8bbff95d0161a6e.mp4',
+      //   title: 'Attendance Management System',
+      //   description:
+      //     'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa vel inventore voluptatum reiciendis delectus quibusdam incidunt consequuntur, nostrum aperiam, natus quidem qui corrupti reprehenderit quaerat neque voluptatibus? Ullam, maiores temporibus!',
+      // };
     },
     showReply(id) {
       this.$refs[id][0].classList.toggle('d-none');
@@ -235,10 +240,13 @@ export default {
       this.truncate = !this.truncate;
     },
     truncateText(string = '', num) {
-      if (string.length <= num) {
-        return string;
+      if (!string) {
+        return '暂无描述！';
       }
-      return string.slice(0, num);
+      if (this.truncate && string.length > num) {
+        return string.slice(0, num);
+      }
+      return string;
     },
   },
 };
