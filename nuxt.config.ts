@@ -3,7 +3,7 @@ import proxy from './app/config/proxy.config';
 
 export default {
   server: {
-    port: 3000, // default: 3000
+    port: 8001, // default: 3000
   },
   /*
    ** Nuxt rendering mode
