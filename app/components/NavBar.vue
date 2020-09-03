@@ -3,7 +3,9 @@
     <v-app-bar class="white" flat app clipped-left hide-on-scroll>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="font-weight-bold"
-        ><router-link to="/" class="black--text" style="text-decoration: none;">VueTube</router-link></v-toolbar-title
+        ><router-link to="/" class="black--text" style="text-decoration: none;"
+          >VueTube</router-link
+        ></v-toolbar-title
       >
       <v-spacer></v-spacer>
       <v-text-field
@@ -23,7 +25,9 @@
         <template v-slot:activator="{ on: menu }">
           <v-tooltip bottom>
             <template v-slot:activator="{ on: tooltip }">
-              <v-btn icon v-on="{ ...tooltip, ...menu }"><v-icon size="25">mdi-video-plus</v-icon></v-btn>
+              <v-btn icon v-on="{ ...tooltip, ...menu }"
+                ><v-icon size="25">mdi-video-plus</v-icon></v-btn
+              >
             </template>
             <span>Create a video and more</span>
           </v-tooltip>
@@ -51,7 +55,9 @@
         <template v-slot:activator="{ on: menu }">
           <v-tooltip bottom>
             <template v-slot:activator="{ on: tooltip }">
-              <v-btn icon class="mr-7" v-on="{ ...tooltip, ...menu }"> <v-icon size="25">mdi-bell</v-icon></v-btn>
+              <v-btn icon class="mr-7" v-on="{ ...tooltip, ...menu }">
+                <v-icon size="25">mdi-bell</v-icon></v-btn
+              >
             </template>
             <span>Notifications</span>
           </v-tooltip>
@@ -81,7 +87,10 @@
           </v-list-item>
           <v-divider class="hidden-lg-and-up"></v-divider>
           <div v-for="parentItem in items" :key="parentItem.header">
-            <v-subheader v-if="parentItem.header" class="pl-3 py-4 subtitle-1 font-weight-bold text-uppercase">
+            <v-subheader
+              v-if="parentItem.header"
+              class="pl-3 py-4 subtitle-1 font-weight-bold text-uppercase"
+            >
               {{ parentItem.header }}
             </v-subheader>
             <v-list-item
@@ -98,7 +107,9 @@
                 <v-icon>{{ item.icon }}</v-icon>
               </v-list-item-icon>
               <v-list-item-content>
-                <v-list-item-title class="font-weight-medium subtitle-2">{{ item.title }}</v-list-item-title>
+                <v-list-item-title class="font-weight-medium subtitle-2">{{
+                  item.title
+                }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
             <v-divider class="mt-2 mb-2"></v-divider>
@@ -106,7 +117,9 @@
 
           <span v-for="link in links" :key="link.text">
             <span v-if="link.text === 'Terms'" class="mb-2 d-block"> </span>
-            <v-btn href router :to="link.link" text class="text-capitalize px-1" small>{{ link.text }}</v-btn>
+            <v-btn href router :to="link.link" text class="text-capitalize px-1" small>{{
+              link.text
+            }}</v-btn>
           </span>
         </v-list>
       </div>
@@ -142,7 +155,7 @@ export default {
           pages: [
             {
               title: 'Library',
-              link: '#l',
+              link: '/library',
               icon: 'mdi-play-box-multiple',
             },
             {
@@ -261,7 +274,7 @@ export default {
   },
   methods: {
     search() {
-      console.log('search', this.searchKeyword);
+      // console.log('search', this.searchKeyword);
     },
   },
 };
@@ -296,7 +309,8 @@ export default {
     backface-visibility: hidden;
     -webkit-transform: rotate3d(0, 0, 0, 0);
     transform: rotate3d(0, 0, 0, 0);
-    -webkit-transition: background-color 100ms ease-out, margin 100ms ease-out, height 100ms ease-out;
+    -webkit-transition: background-color 100ms ease-out, margin 100ms ease-out,
+      height 100ms ease-out;
     transition: background-color 100ms ease-out, margin 100ms ease-out, height 100ms ease-out;
     margin: 5px 5px 5px 0;
     border-radius: 20px;

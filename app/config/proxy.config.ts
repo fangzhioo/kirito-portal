@@ -22,4 +22,16 @@ export default {
       '^/portal/': '/',
     },
   },
+  '/tools': {
+    target: 'http://localhost:3000',
+    pathRewrite: {
+      '^/tools/': '/tools/',
+    },
+  },
+  '/signs': {
+    target: 'http://localhost:3000',
+    pathRewrite: {
+      '^/signs/': '/signs/',
+    },
+  },
 };
