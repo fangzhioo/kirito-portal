@@ -15,7 +15,7 @@
         >
           <v-card max-width="344">
             <v-list-item three-line>
-              <v-list-item-avatar tile size="80" color="grey">
+              <v-list-item-avatar tile size="80" color="white">
                 <v-img
                   :src="i.logo || `https://cdn.vuetifyjs.com/images/cards/mountain.jpg`"
                   contain
