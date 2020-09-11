@@ -22,3 +22,7 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 ## 版本 1.0
 
 整合了 youtube 的 UI；项目模板来自于 [vuetify-youtube-clone-template](https://github.com/techreagan/vuetify-youtube-clone-template)
+
+## 更新
+
+- 【7.29】 调整目录结构，到 app 中；并添加 store 状态管理；

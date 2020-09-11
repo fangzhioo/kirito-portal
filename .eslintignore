@@ -2,3 +2,4 @@ build
 config
 static
 api
+types
