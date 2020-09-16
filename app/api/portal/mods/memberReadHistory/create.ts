@@ -1,17 +1,18 @@
 import { fetch } from '~/utils/fetch';
 
 /**
- * @desc deleteVideoById
+ * @desc 创建浏览记录
  */
-export function request(params, options) {
+export function request(bodyParams, options) {
   const fetchOption = Object.assign(
     {
-      url: '/portal/video/del/{id}',
-      method: 'get',
+      url: '/portal/member/readHistory/create',
+      method: 'post',
       headers: {
         'Content-Type': 'application/json',
       },
-      params: params,
+
+      data: bodyParams,
     },
     options,
   );

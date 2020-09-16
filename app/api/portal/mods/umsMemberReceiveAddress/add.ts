@@ -1,17 +1,18 @@
 import { fetch } from '~/utils/fetch';
 
 /**
- * @desc getVideoList
+ * @desc 添加收货地址
  */
-export function request(params, options) {
+export function request(bodyParams, options) {
   const fetchOption = Object.assign(
     {
-      url: '/portal/video/list',
-      method: 'get',
+      url: '/portal/member/address/add',
+      method: 'post',
       headers: {
         'Content-Type': 'application/json',
       },
-      params: params,
+
+      data: bodyParams,
     },
     options,
   );

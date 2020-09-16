@@ -1,47 +1,18 @@
-class ArticleVO {
-  /** articleId */
-  articleId = undefined;
+class CommonPage {
+  /** list */
+  list = [];
 
-  /** authorAvatar */
-  authorAvatar = '';
+  /** pageNum */
+  pageNum = undefined;
 
-  /** authorId */
-  authorId = undefined;
+  /** pageSize */
+  pageSize = undefined;
 
-  /** authorNickname */
-  authorNickname = '';
+  /** total */
+  total = undefined;
 
-  /** cid */
-  cid = undefined;
-
-  /** content */
-  content = '';
-
-  /** gmtCreate */
-  gmtCreate = '';
-
-  /** gmtModified */
-  gmtModified = '';
-
-  /** subtitle */
-  subtitle = '';
-
-  /** thumb */
-  thumb = '';
-
-  /** title */
-  title = '';
-
-  /** views */
-  views = undefined;
-}
-
-class AuthBO {
-  /** token */
-  token = '';
-
-  /** user */
-  user = new SsoUserBO();
+  /** totalPage */
+  totalPage = undefined;
 }
 
 class CommonResult {
@@ -49,116 +20,169 @@ class CommonResult {
   code = undefined;
 
   /** data */
-  data = new ArticleVO();
+  data = new CommonPage();
 
-  /** msg */
-  msg = '';
+  /** message */
+  message = '';
 }
 
-class LoginUserBO {
-  /** email */
-  email = '';
+class HomeContentResult {
+  /** rememedList */
+  rememedList = [];
+}
+
+class MemberBrandAttention {
+  /** brandCity */
+  brandCity = '';
+
+  /** brandId */
+  brandId = undefined;
+
+  /** brandLogo */
+  brandLogo = '';
+
+  /** brandName */
+  brandName = '';
+
+  /** createTime */
+  createTime = '';
+
+  /** id */
+  id = '';
+
+  /** memberIcon */
+  memberIcon = '';
+
+  /** memberId */
+  memberId = undefined;
+
+  /** memberNickname */
+  memberNickname = '';
+}
+
+class MemberProductCollection {
+  /** createTime */
+  createTime = '';
+
+  /** id */
+  id = '';
+
+  /** memberIcon */
+  memberIcon = '';
+
+  /** memberId */
+  memberId = undefined;
+
+  /** memberNickname */
+  memberNickname = '';
+
+  /** productId */
+  productId = undefined;
+
+  /** productName */
+  productName = '';
+
+  /** productPic */
+  productPic = '';
+
+  /** productPrice */
+  productPrice = '';
+
+  /** productSubTitle */
+  productSubTitle = '';
+}
+
+class MemberReadHistory {
+  /** createTime */
+  createTime = '';
+
+  /** id */
+  id = '';
+
+  /** memberIcon */
+  memberIcon = '';
+
+  /** memberId */
+  memberId = undefined;
+
+  /** memberNickname */
+  memberNickname = '';
+
+  /** productId */
+  productId = undefined;
+
+  /** productName */
+  productName = '';
+
+  /** productPic */
+  productPic = '';
+
+  /** productPrice */
+  productPrice = '';
+
+  /** productSubTitle */
+  productSubTitle = '';
+}
+
+class UmsMemberReceiveAddress {
+  /** 城市 */
+  city = '';
+
+  /** 是否为默认 */
+  defaultStatus = undefined;
+
+  /** 详细地址(街道) */
+  detailAddress = '';
+
+  /** id */
+  id = undefined;
+
+  /** memberId */
+  memberId = undefined;
+
+  /** 收货人名称 */
+  name = '';
+
+  /** phoneNumber */
+  phoneNumber = '';
+
+  /** 邮政编码 */
+  postCode = '';
+
+  /** 省份/直辖市 */
+  province = '';
+
+  /** 区 */
+  region = '';
+}
+
+class UserDto {
+  /** clientId */
+  clientId = '';
+
+  /** id */
+  id = undefined;
 
   /** password */
   password = '';
 
-  /** remember */
-  remember = false;
-}
-
-class RegisterUserBO {
-  /** confirmPassword */
-  confirmPassword = '';
-
-  /** email */
-  email = '';
-
-  /** nickName */
-  nickName = '';
-
-  /** password */
-  password = '';
-}
-
-class SsoUserBO {
-  /** avatar */
-  avatar = '';
-
-  /** createdTime */
-  createdTime = '';
-
-  /** email */
-  email = '';
-
-  /** modifyTime */
-  modifyTime = '';
-
-  /** nickName */
-  nickName = '';
-
-  /** phone */
-  phone = '';
-
-  /** signature */
-  signature = '';
-
-  /** userId */
-  userId = undefined;
-
-  /** userName */
-  userName = '';
-}
-
-class VideoVO {
-  /** authorAvatar */
-  authorAvatar = '';
-
-  /** authorId */
-  authorId = undefined;
-
-  /** authorNickname */
-  authorNickname = '';
-
-  /** cid */
-  cid = undefined;
-
-  /** content */
-  content = '';
-
-  /** desc */
-  desc = '';
-
-  /** gmtCreate */
-  gmtCreate = '';
-
-  /** gmtModified */
-  gmtModified = '';
-
-  /** likes */
-  likes = undefined;
+  /** roles */
+  roles = [];
 
   /** status */
   status = undefined;
 
-  /** thumb */
-  thumb = '';
-
-  /** title */
-  title = '';
-
-  /** videoId */
-  videoId = undefined;
-
-  /** views */
-  views = undefined;
+  /** username */
+  username = '';
 }
 
 export const portal = {
-  ArticleVO,
-  AuthBO,
+  CommonPage,
   CommonResult,
-  LoginUserBO,
-  RegisterUserBO,
-  SsoUserBO,
-  VideoVO,
+  HomeContentResult,
+  MemberBrandAttention,
+  MemberProductCollection,
+  MemberReadHistory,
+  UmsMemberReceiveAddress,
+  UserDto,
 };

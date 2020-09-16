@@ -1,12 +1,12 @@
 import { fetch } from '~/utils/fetch';
 
 /**
- * @desc 获取首页热门
+ * @desc 显示收藏商品详情
  */
 export function request(params, options) {
   const fetchOption = Object.assign(
     {
-      url: '/portal/article/recommend',
+      url: '/portal/member/productCollection/detail',
       method: 'get',
       headers: {
         'Content-Type': 'application/json',

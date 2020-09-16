@@ -1,18 +1,16 @@
 import { fetch } from '~/utils/fetch';
 
 /**
- * @desc updateVideo
+ * @desc 获取会员信息
  */
-export function request(bodyParams, options) {
+export function request(options) {
   const fetchOption = Object.assign(
     {
-      url: '/portal/video/update',
-      method: 'post',
+      url: '/portal/sso/info',
+      method: 'get',
       headers: {
         'Content-Type': 'application/json',
       },
-
-      data: bodyParams,
     },
     options,
   );

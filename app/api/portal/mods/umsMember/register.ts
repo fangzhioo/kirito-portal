@@ -1,16 +1,17 @@
 import { fetch } from '~/utils/fetch';
 
 /**
- * @desc 获取当前用户信息，需要携带cookie
+ * @desc 会员注册
  */
-export function request(options) {
+export function request(params, options) {
   const fetchOption = Object.assign(
     {
-      url: '/portal/auth/current',
-      method: 'get',
+      url: '/portal/sso/register',
+      method: 'post',
       headers: {
         'Content-Type': 'application/json',
       },
+      params: params,
     },
     options,
   );

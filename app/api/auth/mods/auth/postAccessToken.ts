@@ -1,17 +1,16 @@
 import { fetch } from '~/utils/fetch';
 
 /**
- * @desc getVideoById
+ * @desc Oauth2获取token
  */
-export function request(params, options) {
+export function request(options) {
   const fetchOption = Object.assign(
     {
-      url: '/portal/video/get/{id}',
-      method: 'get',
+      url: '/auth/oauth/token',
+      method: 'post',
       headers: {
         'Content-Type': 'application/json',
       },
-      params: params,
     },
     options,
   );

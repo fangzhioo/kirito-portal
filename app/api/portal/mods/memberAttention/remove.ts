@@ -1,13 +1,13 @@
 import { fetch } from '~/utils/fetch';
 
 /**
- * @desc 获取文章详情
+ * @desc 取消关注
  */
 export function request(params, options) {
   const fetchOption = Object.assign(
     {
-      url: '/portal/article/get/{id}',
-      method: 'get',
+      url: '/portal/member/attention/delete',
+      method: 'post',
       headers: {
         'Content-Type': 'application/json',
       },

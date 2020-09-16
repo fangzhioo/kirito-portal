@@ -1,18 +1,16 @@
 import { fetch } from '~/utils/fetch';
 
 /**
- * @desc 用户注册
+ * @desc 清空关注列表
  */
-export function request(bodyParams, options) {
+export function request(options) {
   const fetchOption = Object.assign(
     {
-      url: '/portal/auth/signUp',
+      url: '/portal/member/attention/clear',
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
       },
-
-      data: bodyParams,
     },
     options,
   );

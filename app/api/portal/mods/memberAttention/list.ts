@@ -1,18 +1,17 @@
 import { fetch } from '~/utils/fetch';
 
 /**
- * @desc publishVideo
+ * @desc 显示关注列表
  */
-export function request(bodyParams, options) {
+export function request(params, options) {
   const fetchOption = Object.assign(
     {
-      url: '/portal/video/publish',
-      method: 'post',
+      url: '/portal/member/attention/list',
+      method: 'get',
       headers: {
         'Content-Type': 'application/json',
       },
-
-      data: bodyParams,
+      params: params,
     },
     options,
   );

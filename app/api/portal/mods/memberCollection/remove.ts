@@ -1,13 +1,13 @@
 import { fetch } from '~/utils/fetch';
 
 /**
- * @desc 获取最新发布的文章列表
+ * @desc 删除收藏商品
  */
 export function request(params, options) {
   const fetchOption = Object.assign(
     {
-      url: '/portal/article/list',
-      method: 'get',
+      url: '/portal/member/productCollection/delete',
+      method: 'post',
       headers: {
         'Content-Type': 'application/json',
       },
