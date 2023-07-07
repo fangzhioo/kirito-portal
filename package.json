@@ -70,7 +70,7 @@
     "nuxt-property-decorator": "^2.7.2",
     "pont-engine": "^1.0.6",
     "prettier": "^2.0.5",
-    "stylelint": "^13.6.1",
+    "stylelint": "^15.10.1",
     "stylelint-config-prettier": "^8.0.1",
     "stylelint-config-standard": "^20.0.0",
     "ts-jest": "^26.1.4",
